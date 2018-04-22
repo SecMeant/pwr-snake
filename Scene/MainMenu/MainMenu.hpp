@@ -3,28 +3,22 @@
 
 #include "../Scene.hpp"
 
+#include "../../utility/complexTypes.hpp"
+
 #include <SFML/Graphics.hpp>
 
 #include <vector>
 #include <memory>
 
-struct renderObject
-{
-	sf::Texture texture;
-	sf::RectangleShape shape;
-};
-
 class MainMenu: public Scene
 {
 private:
-	renderObject background;
+	virtual sceneID eventLoop() override;
 
-	inline void initializeBackground();
-	inline void eventLoop();
 public:
 	explicit MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd);
 
-	virtual void switchScene() override;
+	virtual sceneID switchScene() override;
 };
 
 #endif // MAINMENU_H

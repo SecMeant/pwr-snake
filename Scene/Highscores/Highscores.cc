@@ -1,14 +1,23 @@
-#include "MainMenu.hpp"
+#include "Highscores.hpp"
 
-MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
-:Scene(wnd)
+Highscores::Highscores
+(const std::shared_ptr<sf::RenderWindow> &wnd)
+:Scene(wnd){puts("Creating highscores");}
+
+sceneID Highscores::switchScene()	
 {
-	puts("Creating main menu");
-	this->background.assetPath = "./assets/mainmenutex.png";
+	puts("Switching to Highscores");
+	this->background.assetPath = "./assets/highscores.png";
 	this->initializeBackground();
+
+	// TODO
+	// some restoring actions
+	
+	this->eventLoop();
+	return {sceneID::mainmenu};
 }
 
-sceneID MainMenu::eventLoop()
+sceneID Highscores::eventLoop()
 {
 	while (this->parentWindow->isOpen())
 	{
@@ -20,7 +29,6 @@ sceneID MainMenu::eventLoop()
 			
 			if (event.type == sf::Event::MouseButtonPressed)
 				return {sceneID::highscores};
-
 			// TODO event handling
 		}
 
@@ -29,14 +37,4 @@ sceneID MainMenu::eventLoop()
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
-}
-
-sceneID MainMenu::switchScene()
-{
-	puts("Switching to MainMenu");
-
-	// TODO
-	// Some returning animation ?
-
-	return this->eventLoop();
 }

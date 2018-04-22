@@ -3,6 +3,9 @@
 
 #include "../Scene/Scene.hpp"
 #include "../Scene/MainMenu/MainMenu.hpp"
+#include "../Scene/Highscores/Highscores.hpp"
+
+#include "../utility/complexTypes.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -14,7 +17,7 @@
 class SceneManager
 {
 private:
-	enum class sceneID{mainmenu}currentScene;
+	sceneID currentScene;
 
 	// Holds all available scenes
 	std::vector<std::unique_ptr<Scene> > scenes;
@@ -22,6 +25,13 @@ private:
 
 public:
 	SceneManager();
+
+	// Used from other scenes to switch to each other
+	// argument is desired secene
+	void switchScene(sceneID scene);
+
+	// runs scene loop
+	void run();
 };
 
 #endif // SCENEMANAGER_H
