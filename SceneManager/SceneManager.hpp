@@ -30,6 +30,9 @@ public:
 	// argument is desired secene
 	void switchScene(sceneID scene);
 
+	template<typename T>
+	void registerScene();
+
 	// runs scene loop
 	void run();
 };
