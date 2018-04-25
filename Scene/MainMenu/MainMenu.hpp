@@ -9,12 +9,16 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 class MainMenu: public Scene
 {
 private:
-	virtual sceneID eventLoop() override;
+	Button highscoresButton;
+	Button startgameButton;
 
+	virtual sceneID eventLoop() override;
+	inline void initializeButtons();
 public:
 	explicit MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd);
 
