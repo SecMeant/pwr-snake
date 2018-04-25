@@ -44,13 +44,11 @@ public:
 	}
 
 	inline void press()
-	{
-		this->sprite.setTexture(this->pressedTexture, true);
-	}
+	{this->sprite.setTexture(this->pressedTexture, true);}
 
 	inline void release()
-	{
-		this->sprite.setTexture(this->releasedTexture, true);
-	}
+	{this->sprite.setTexture(this->releasedTexture, true);}
 };
+
+
 #endif // COMPLEXTYPES_H

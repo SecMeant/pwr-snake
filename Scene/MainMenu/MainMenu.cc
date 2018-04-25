@@ -19,21 +19,18 @@ sceneID MainMenu::eventLoop()
 			if (event.type == sf::Event::Closed)
 				this->parentWindow->close();
 			
-			if (event.type == sf::Event::MouseButtonPressed)
+			if(event.type == sf::Event::MouseButtonPressed)
 			{
-				auto mousex = event.mouseButton.x;
-				auto mousey = event.mouseButton.y;
-
-				if(this->startgameButton.sprite.getGlobalBounds().contains(mousex, mousey))
-				{
-					return {sceneID::gamescene};
-				}
-
-				if(this->highscoresButton.sprite.getGlobalBounds().contains(mousex, mousey))
-				{
-					return {sceneID::highscores};
-				}
+				if(this->handleMousePressed(event) != sceneID::none)
+					return this->handleMousePressed(event);
 			}
+
+			if(event.type == sf::Event::MouseButtonReleased)
+			{
+				if(this->handleMouseReleased(event) != sceneID::none)
+					return this->handleMouseReleased(event);
+			}
+
 
 			// TODO event handling
 		}
@@ -51,17 +48,57 @@ void MainMenu::initializeButtons()
 {
 	/* SETTING TEXTURES */
 	this->highscoresButton.loadTextures
-		("./assets/blue_button_down.png",
-		 "./assets/blue_button_up.png");
+		("./assets/yellow_button_down.png",
+		 "./assets/yellow_button_up.png");
 
 	this->startgameButton.loadTextures
-		("./assets/green_button_down.png",
-		 "./assets/yellow_button_up.png");
+		("./assets/blue_button_down.png",
+		 "./assets/blue_button_up.png");
 
 
 	/* SETTING POSITIONS */
 	this->highscoresButton.sprite.setPosition(200,500);
-	this->startgameButton.sprite.setPosition(280,500);
+	this->startgameButton.sprite.setPosition(480,500);
+}
+
+sceneID MainMenu::handleMousePressed(const sf::Event &mev)
+{
+	auto mousex = mev.mouseButton.x;
+	auto mousey = mev.mouseButton.y;
+
+
+	if(this->startgameButton.sprite.getGlobalBounds().contains(mousex, mousey))
+	{
+		this->startgameButton.press();
+	}
+
+	if(this->highscoresButton.sprite.getGlobalBounds().contains(mousex, mousey))
+	{
+		this->highscoresButton.press();
+	}
+
+	return {sceneID::none};
+}
+
+sceneID MainMenu::handleMouseReleased(const sf::Event &mev)
+{
+	auto mousex = mev.mouseButton.x;
+	auto mousey = mev.mouseButton.y;
+	sceneID ret = sceneID::none;
+
+	if(this->startgameButton.sprite.getGlobalBounds().contains(mousex, mousey))
+	{
+		ret = sceneID::gamescene;
+	}
+
+	if(this->highscoresButton.sprite.getGlobalBounds().contains(mousex, mousey))
+	{
+		ret = sceneID::highscores;
+	}
+
+	this->highscoresButton.release();
+	this->startgameButton.release();
+	return ret;
 }
 
 sceneID MainMenu::switchScene()

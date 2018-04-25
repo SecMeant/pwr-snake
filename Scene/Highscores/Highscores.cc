@@ -27,7 +27,7 @@ sceneID Highscores::eventLoop()
 			if (event.type == sf::Event::Closed)
 				this->parentWindow->close();
 			
-			if (event.type == sf::Event::MouseButtonPressed)
+			if (event.type == sf::Event::MouseButtonReleased)
 			{
 				auto mousex = event.mouseButton.x;
 				auto mousey = event.mouseButton.y;

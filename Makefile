@@ -2,13 +2,15 @@ CC=g++
 CFLAGS=-Wextra -Wall -std=c++14
 sfmlso=-lsfml-graphics -lsfml-window -lsfml-system
 sfmldll=sfml-graphics-d-2.dll sfml-window-d-2.dll sfml-system-d-2.dll
-OBJS=main.o scene.o scenemanager.o mainmenu.o highscores.o gamescene.o
+OBJS=main.o scene.o scenemanager.o mainmenu.o highscores.o gamescene.o board.o
 OBJDIR=obj
 
 ifdef ComSpec
 appname=snake.exe
+removeObj=del /Q obj\*
 else
 appname=snake.out
+removeObj=rm ./obj/*
 endif 
 
 OBJ = $(addprefix $(OBJDIR)/, $(OBJS))
@@ -39,5 +41,8 @@ $(OBJDIR)/highscores.o: Scene/Highscores/Highscores.cc
 $(OBJDIR)/gamescene.o: Scene/GameScene/GameScene.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)
 
+$(OBJDIR)/board.o: Scene/GameScene/Board/Board.cc
+	$(CC) -c $^ -o $@ $(CFLAGS)
+
 clean:
-	rm ./obj/*
+	$(removeObj)
