@@ -28,7 +28,7 @@ void SceneManager::switchScene(sceneID scene)
 	}
 	catch(const std::out_of_range &ex)
 	{
-		printf("Error - cannot switch to scene with id: %llu.\n",scene);
+		printf("Error - cannot switch to scene with id: %i.\n",scene);
 		this->currentScene = scenecopy;
 	}
 }

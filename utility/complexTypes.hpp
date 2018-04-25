@@ -2,6 +2,7 @@
 #define COMPLEXTYPES_H
 
 #include <string>
+#include <stdint.h>
 #include "SFML/Graphics.hpp"
 
 struct renderObject
@@ -11,7 +12,7 @@ struct renderObject
 	std::string assetPath;
 };
 
-enum sceneID:size_t
+enum sceneID:int32_t
 {
 	mainmenu = 0,
 	highscores = 1,

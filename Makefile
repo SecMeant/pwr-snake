@@ -1,4 +1,3 @@
-SHELL=cmd
 CC=g++
 CFLAGS=-Wextra -Wall -std=c++14
 sfmlso=-lsfml-graphics -lsfml-window -lsfml-system
@@ -37,5 +36,8 @@ $(OBJDIR)/mainmenu.o: Scene/MainMenu/MainMenu.cc
 $(OBJDIR)/highscores.o: Scene/Highscores/Highscores.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)
 
-$(OBJDIR)/gamescene.o: Scene\GameScene\GameScene.cc
+$(OBJDIR)/gamescene.o: Scene/GameScene/GameScene.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)
+
+clean:
+	rm ./obj/*
