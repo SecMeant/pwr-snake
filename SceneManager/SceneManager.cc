@@ -10,6 +10,7 @@ SceneManager::SceneManager()
 
 	this->registerScene<MainMenu>();
 	this->registerScene<Highscores>();
+	this->registerScene<GameScene>();
 
 	this->currentScene = sceneID::mainmenu;
 }
@@ -35,8 +36,18 @@ void SceneManager::switchScene(sceneID scene)
 template<typename T>
 void SceneManager::registerScene()
 {
+	static bool exists = 0;
+
+	if(exists)
+	{
+		printf("Cannot create Scene.\n%s already exists.\n",
+				__PRETTY_FUNCTION__);
+		return;
+	}
+
 	this->scenes.push_back(
 			std::make_unique<T>(this->mainWindow));
+	exists = true;
 }
 
 void SceneManager::run()

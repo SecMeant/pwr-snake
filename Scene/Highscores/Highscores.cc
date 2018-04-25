@@ -7,14 +7,13 @@ Highscores::Highscores
 sceneID Highscores::switchScene()	
 {
 	puts("Switching to Highscores");
-	this->background.assetPath = "./assets/highscores.png";
+	this->background.assetPath = "./assets/default-background.png";
 	this->initializeBackground();
 
 	// TODO
 	// some restoring actions
 	
-	this->eventLoop();
-	return {sceneID::mainmenu};
+	return this->eventLoop();
 }
 
 sceneID Highscores::eventLoop()
@@ -28,7 +27,7 @@ sceneID Highscores::eventLoop()
 				this->parentWindow->close();
 			
 			if (event.type == sf::Event::MouseButtonPressed)
-				return {sceneID::highscores};
+				return {sceneID::gamescene};
 			// TODO event handling
 		}
 

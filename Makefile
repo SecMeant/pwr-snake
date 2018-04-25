@@ -3,7 +3,7 @@ CC=g++
 CFLAGS=-Wextra -Wall -std=c++14
 sfmlso=-lsfml-graphics -lsfml-window -lsfml-system
 sfmldll=sfml-graphics-d-2.dll sfml-window-d-2.dll sfml-system-d-2.dll
-OBJS=main.o scene.o scenemanager.o mainmenu.o highscores.o
+OBJS=main.o scene.o scenemanager.o mainmenu.o highscores.o gamescene.o
 OBJDIR=obj
 
 ifdef ComSpec
@@ -35,4 +35,7 @@ $(OBJDIR)/mainmenu.o: Scene/MainMenu/MainMenu.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)
 
 $(OBJDIR)/highscores.o: Scene/Highscores/Highscores.cc
+	$(CC) -c $^ -o $@ $(CFLAGS)
+
+$(OBJDIR)/gamescene.o: Scene\GameScene\GameScene.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)

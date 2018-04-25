@@ -4,6 +4,7 @@
 #include "../Scene/Scene.hpp"
 #include "../Scene/MainMenu/MainMenu.hpp"
 #include "../Scene/Highscores/Highscores.hpp"
+#include "../Scene/GameScene/GameScene.hpp"
 
 #include "../utility/complexTypes.hpp"
 

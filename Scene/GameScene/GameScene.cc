@@ -1,14 +1,14 @@
-#include "MainMenu.hpp"
+#include "GameScene.hpp"
 
-MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
+GameScene::GameScene(const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd)
 {
-	puts("Creating main menu");
+	puts("Creating game scene");
 	this->background.assetPath = "./assets/default-background.png";
 	this->initializeBackground();
 }
 
-sceneID MainMenu::eventLoop()
+sceneID GameScene::eventLoop()
 {
 	while (this->parentWindow->isOpen())
 	{
@@ -19,7 +19,7 @@ sceneID MainMenu::eventLoop()
 				this->parentWindow->close();
 			
 			if (event.type == sf::Event::MouseButtonPressed)
-				return {sceneID::highscores};
+				return {sceneID::mainmenu};
 
 			// TODO event handling
 		}
@@ -31,9 +31,9 @@ sceneID MainMenu::eventLoop()
 	return {sceneID::none};
 }
 
-sceneID MainMenu::switchScene()
+sceneID GameScene::switchScene()
 {
-	puts("Switching to MainMenu");
+	puts("Switching to GameScene");
 
 	// TODO
 	// Some returning animation ?

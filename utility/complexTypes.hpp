@@ -15,6 +15,7 @@ enum sceneID:size_t
 {
 	mainmenu = 0,
 	highscores = 1,
+	gamescene = 2,
 	none = 1337
 };
 #endif // COMPLEXTYPES_H
