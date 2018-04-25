@@ -20,7 +20,20 @@ sceneID MainMenu::eventLoop()
 				this->parentWindow->close();
 			
 			if (event.type == sf::Event::MouseButtonPressed)
-				return {sceneID::highscores};
+			{
+				auto mousex = event.mouseButton.x;
+				auto mousey = event.mouseButton.y;
+
+				if(this->startgameButton.sprite.getGlobalBounds().contains(mousex, mousey))
+				{
+					return {sceneID::gamescene};
+				}
+
+				if(this->highscoresButton.sprite.getGlobalBounds().contains(mousex, mousey))
+				{
+					return {sceneID::highscores};
+				}
+			}
 
 			// TODO event handling
 		}

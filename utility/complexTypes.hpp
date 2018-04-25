@@ -35,6 +35,14 @@ public:
 		this->sprite.setTexture(this->releasedTexture, true);
 	}
 
+	inline void loadTextures
+	(const char *universalTexPath)
+	{
+		this->pressedTexture.loadFromFile(universalTexPath);
+		this->releasedTexture.loadFromFile(universalTexPath);
+		this->sprite.setTexture(this->releasedTexture, true);
+	}
+
 	inline void press()
 	{
 		this->sprite.setTexture(this->pressedTexture, true);

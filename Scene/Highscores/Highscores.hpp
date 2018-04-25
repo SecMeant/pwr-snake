@@ -14,6 +14,8 @@ private:
 	// after this scene returns, passing it to switchScene
 	virtual sceneID eventLoop() override;
 
+	Button returnButton;
+	inline void initializeButtons();
 public:
 	explicit Highscores(const std::shared_ptr<sf::RenderWindow> &wnd);
 
@@ -23,3 +25,4 @@ public:
 };
 
 #endif // HIGHSCORES_H
+
