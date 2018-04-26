@@ -11,6 +11,16 @@
 #include <vector>
 #include <memory>
 
+// Settings are picked manualy
+// This might not be the best way
+// Maybe it should be calculated
+// TODO ^^^
+namespace boardSettings
+{
+	constexpr int32_t boardWidth = 18;
+	constexpr int32_t boardHeight = 12;
+};
+
 class GameScene:public Scene
 {
 private:
@@ -19,6 +29,9 @@ private:
 	
 	static constexpr const char *cherryTexturePath 
 		= "./assets/cherry.png";
+
+	static constexpr const char *redButtonTexPath
+		= "./assets/";
 	
 	Board board;
 
@@ -27,10 +40,27 @@ private:
 	sf::Texture cherryTexture;
 	sf::RectangleShape tile;
 
+	// Buttons
+	Button returnMainMenu;
+
 	virtual sceneID eventLoop() override;
-	inline void initializeBoard();
-	inline void loadTextures();
 	inline void drawBoard();
+
+	// Initializing helpers
+	inline void initializeBoard();
+	inline void initializeButtons();
+	inline void loadTextures();
+
+	/* Helpers for handling mouse events 
+	 *
+	 * Takes event as argument
+	 * Returns id of scene if mouse event caused 
+	 * scene switch. If scene shouldnt be switched
+	 * sceneID::none is returned
+	 *
+	 * */
+	inline sceneID handleMousePressed(const sf::Event &mev);
+	inline sceneID handleMouseReleased(const sf::Event &mev);
 public:
 	explicit GameScene
 	(const std::shared_ptr<sf::RenderWindow> &wnd);

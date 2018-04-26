@@ -9,6 +9,7 @@ GameScene::GameScene
 	this->initializeBackground();
 	this->initializeBoard();
 	this->loadTextures();
+	this->initializeButtons();
 }
 
 sceneID GameScene::eventLoop()
@@ -21,14 +22,24 @@ sceneID GameScene::eventLoop()
 			if (event.type == sf::Event::Closed)
 				this->parentWindow->close();
 			
-			if (event.type == sf::Event::MouseButtonPressed)
-				return {sceneID::mainmenu};
+			if(event.type == sf::Event::MouseButtonPressed)
+			{
+				if(this->handleMousePressed(event) != sceneID::none)
+					return this->handleMousePressed(event);
+			}
+
+			if(event.type == sf::Event::MouseButtonReleased)
+			{
+				if(this->handleMouseReleased(event) != sceneID::none)
+					return this->handleMouseReleased(event);
+			}
 
 			// TODO event handling
 		}
 
 		this->parentWindow->clear();
 		this->parentWindow->draw(this->background.shape);
+		this->parentWindow->draw(this->returnMainMenu.sprite);
 		this->drawBoard();
 		this->parentWindow->display();
 	}
@@ -37,13 +48,53 @@ sceneID GameScene::eventLoop()
 
 void GameScene::initializeBoard()
 {
-	this->board.resize(12,12);
+	this->board.resize
+	(boardSettings::boardWidth,boardSettings::boardHeight);
+}
+
+void GameScene::initializeButtons()
+{
+	/* SETIING TEXTURES */
+	this->returnMainMenu.loadTextures
+	("./assets/red_button_down.png",
+	 "./assets/red_button_up.png");
+
+	/* SETTING POSITIONS */
+	this->returnMainMenu.sprite.setPosition(500, 530);
 }
 
 void GameScene::loadTextures()
 {
 	this->tileTexture.loadFromFile(tileTexturePath);
 	this->cherryTexture.loadFromFile(cherryTexturePath);
+}
+
+sceneID GameScene::handleMousePressed(const sf::Event &mev)
+{
+	auto mousex = mev.mouseButton.x;
+	auto mousey = mev.mouseButton.y;
+
+	if(this->returnMainMenu.sprite.getGlobalBounds().contains(mousex, mousey))
+	{
+		this->returnMainMenu.press();
+	}
+
+	return {sceneID::none};
+}
+
+sceneID GameScene::handleMouseReleased(const sf::Event &mev)
+{
+	auto mousex = mev.mouseButton.x;
+	auto mousey = mev.mouseButton.y;
+	sceneID ret = sceneID::none;
+
+	if(this->returnMainMenu.sprite.getGlobalBounds().contains(mousex, mousey))
+	{
+		ret = sceneID::mainmenu;
+	}
+
+	this->returnMainMenu.release();
+	return ret;
 }
 
 void GameScene::drawBoard()
@@ -60,8 +111,9 @@ void GameScene::drawBoard()
 
 	for(auto i:this->board.tiles)
 	{
+		++wrapCounter;
+
 		tile.setPosition(currx, curry);
-		printf("%f %f\n",currx, curry);
 		this->parentWindow->draw(tile);
 		
 		if(i==TileState::cherry)
@@ -72,13 +124,12 @@ void GameScene::drawBoard()
 		}
 
 		currx += Board::tileWidth;
-		if(wrapCounter == 11)
+		if(wrapCounter == boardSettings::boardWidth)
 		{
 			currx = Board::boardxOffset;
 			curry += Board::tileHeight;
 			wrapCounter = 0;
 		}
-		++wrapCounter;
 	}
 
 	return;

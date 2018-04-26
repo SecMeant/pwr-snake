@@ -12,8 +12,8 @@ class Board
 public:
 	static constexpr float boardxOffset = 40;
 	static constexpr float boardyOffset = 40;
-	static constexpr float tileWidth = 48;
-	static constexpr float tileHeight = 48;
+	static constexpr float tileWidth = 40;
+	static constexpr float tileHeight = 40;
 	
 	int32_t width;
 	int32_t height;
