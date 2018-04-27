@@ -52,8 +52,8 @@ void MainMenu::initializeButtons()
 		 TextureManager::yellowButtonUpTexPath);
 
 	this->startgameButton.loadTextures
-		(TextureManager::yellowButtonDownTexPath,
-		 TextureManager::yellowButtonUpTexPath);
+		(TextureManager::blueButtonDownTexPath,
+		 TextureManager::blueButtonUpTexPath);
 
 
 	/* SETTING POSITIONS */
