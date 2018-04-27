@@ -6,9 +6,7 @@
 #include "../Scene/Highscores/Highscores.hpp"
 #include "../Scene/GameScene/GameScene.hpp"
 
-#include "../utility/complexTypes.hpp"
-
-#include <SFML/Graphics.hpp>
+#include "../utility/stdshared.hpp"
 
 #include <vector>
 #include <memory>

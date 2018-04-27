@@ -5,7 +5,7 @@ GameScene::GameScene
 :Scene(wnd)
 {
 	puts("Creating game scene");
-	this->background.assetPath = "./assets/default-background.png";
+	this->background.assetPath = TextureManager::brickBackgroundTexPath;
 	this->initializeBackground();
 	this->initializeBoard();
 	this->loadTextures();
@@ -56,8 +56,8 @@ void GameScene::initializeButtons()
 {
 	/* SETIING TEXTURES */
 	this->returnMainMenu.loadTextures
-	("./assets/red_button_down.png",
-	 "./assets/red_button_up.png");
+	(TextureManager::redButtonDownTexPath,
+	 TextureManager::redButtonUpTexPath);
 
 	/* SETTING POSITIONS */
 	this->returnMainMenu.sprite.setPosition(500, 530);
@@ -65,8 +65,8 @@ void GameScene::initializeButtons()
 
 void GameScene::loadTextures()
 {
-	this->tileTexture.loadFromFile(tileTexturePath);
-	this->cherryTexture.loadFromFile(cherryTexturePath);
+	this->tileTexture.loadFromFile(TextureManager::tileTexturePath);
+	this->cherryTexture.loadFromFile(TextureManager::cherryTexturePath);
 }
 
 sceneID GameScene::handleMousePressed(const sf::Event &mev)

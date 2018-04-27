@@ -7,7 +7,7 @@ Highscores::Highscores
 sceneID Highscores::switchScene()	
 {
 	puts("Switching to Highscores");
-	this->background.assetPath = "./assets/highscores.png";
+	this->background.assetPath = TextureManager::highscoresBackgroundTexPath;
 	this->initializeBackground();
 	this->initializeButtons();
 
@@ -52,7 +52,7 @@ sceneID Highscores::eventLoop()
 void Highscores::initializeButtons()
 {
 	/* SETTING TEXTURES */
-	this->returnButton.loadTextures("./assets/blue_sliderLeft.png");
+	this->returnButton.loadTextures(TextureManager::blueSliderLeftTexPath);
 
 	/* SETTING POSITIONS */
 	this->returnButton.sprite.setPosition(700,500);

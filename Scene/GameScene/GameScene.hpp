@@ -4,9 +4,7 @@
 #include "../Scene.hpp"
 #include "Board/Board.hpp"
 
-#include "../../utility/complexTypes.hpp"
-
-#include <SFML/Graphics.hpp>
+#include "../../utility/stdshared.hpp"
 
 #include <vector>
 #include <memory>
@@ -17,6 +15,7 @@
 // TODO ^^^
 namespace boardSettings
 {
+	// Width and height are in tiles units
 	constexpr int32_t boardWidth = 18;
 	constexpr int32_t boardHeight = 12;
 };
@@ -24,15 +23,6 @@ namespace boardSettings
 class GameScene:public Scene
 {
 private:
-	static constexpr const char *tileTexturePath 
-		= "./assets/rocktile.png";
-	
-	static constexpr const char *cherryTexturePath 
-		= "./assets/cherry.png";
-
-	static constexpr const char *redButtonTexPath
-		= "./assets/";
-	
 	Board board;
 
 	// Textures

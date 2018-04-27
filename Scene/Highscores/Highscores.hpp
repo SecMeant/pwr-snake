@@ -3,7 +3,7 @@
 
 #include "../Scene.hpp"
 
-#include "../../utility/complexTypes.hpp"
+#include "../../utility/stdshared.hpp"
 
 #include <memory>
 

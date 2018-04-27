@@ -3,9 +3,7 @@
 
 #include "../Scene.hpp"
 
-#include "../../utility/complexTypes.hpp"
-
-#include <SFML/Graphics.hpp>
+#include "../../utility/stdshared.hpp"
 
 #include <vector>
 #include <memory>

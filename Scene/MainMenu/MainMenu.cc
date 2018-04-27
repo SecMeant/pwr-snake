@@ -4,7 +4,7 @@ MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd)
 {
 	puts("Creating main menu");
-	this->background.assetPath = "./assets/default-background.png";
+	this->background.assetPath = TextureManager::brickBackgroundTexPath;
 	this->initializeBackground();
 	this->initializeButtons();
 }
@@ -48,12 +48,12 @@ void MainMenu::initializeButtons()
 {
 	/* SETTING TEXTURES */
 	this->highscoresButton.loadTextures
-		("./assets/yellow_button_down.png",
-		 "./assets/yellow_button_up.png");
+		(TextureManager::yellowButtonDownTexPath,
+		 TextureManager::yellowButtonUpTexPath);
 
 	this->startgameButton.loadTextures
-		("./assets/blue_button_down.png",
-		 "./assets/blue_button_up.png");
+		(TextureManager::yellowButtonDownTexPath,
+		 TextureManager::yellowButtonUpTexPath);
 
 
 	/* SETTING POSITIONS */
