@@ -2,6 +2,7 @@
 
 int main(void)
 {
+	TextureManager tm; // ctor loads textures to memory
 	SceneManager sm;
 	sm.run();
 

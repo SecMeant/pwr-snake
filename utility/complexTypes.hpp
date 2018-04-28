@@ -4,6 +4,7 @@
 #include <string>
 #include <stdint.h>
 #include "SFML/Graphics.hpp"
+#include "../TextureManager/TextureManager.hpp"
 
 struct renderObject
 {
@@ -23,31 +24,31 @@ enum sceneID:int32_t
 class Button
 {
 public:
-	sf::Texture pressedTexture;
-	sf::Texture releasedTexture;
+	sf::Texture *pressedTexture;
+	sf::Texture *releasedTexture;
 	sf::Sprite sprite;
 
 	inline void loadTextures
-	(const char *pressedTexPath, const char *releasedTexPath)
+	(sf::Texture *upTexture, sf::Texture *downTexture)
 	{
-		this->pressedTexture.loadFromFile(pressedTexPath);
-		this->releasedTexture.loadFromFile(releasedTexPath);
-		this->sprite.setTexture(this->releasedTexture, true);
+		this->releasedTexture = upTexture;
+		this->pressedTexture = downTexture;
+		this->sprite.setTexture(*this->releasedTexture, true);
 	}
 
 	inline void loadTextures
-	(const char *universalTexPath)
+	(sf::Texture *uniTexture)
 	{
-		this->pressedTexture.loadFromFile(universalTexPath);
-		this->releasedTexture.loadFromFile(universalTexPath);
-		this->sprite.setTexture(this->releasedTexture, true);
+		this->releasedTexture = uniTexture;
+		this->pressedTexture = uniTexture;
+		this->sprite.setTexture(*this->releasedTexture, true);
 	}
 
 	inline void press()
-	{this->sprite.setTexture(this->pressedTexture, true);}
+	{this->sprite.setTexture(*this->pressedTexture, true);}
 
 	inline void release()
-	{this->sprite.setTexture(this->releasedTexture, true);}
+	{this->sprite.setTexture(*this->releasedTexture, true);}
 };
 
 

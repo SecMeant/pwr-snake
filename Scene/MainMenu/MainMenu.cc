@@ -48,12 +48,12 @@ void MainMenu::initializeButtons()
 {
 	/* SETTING TEXTURES */
 	this->highscoresButton.loadTextures
-		(TextureManager::yellowButtonDownTexPath,
-		 TextureManager::yellowButtonUpTexPath);
+		(&TextureManager::yellowButtonDownTex,
+		 &TextureManager::yellowButtonUpTex);
 
 	this->startgameButton.loadTextures
-		(TextureManager::blueButtonDownTexPath,
-		 TextureManager::blueButtonUpTexPath);
+		(&TextureManager::blueButtonDownTex,
+		 &TextureManager::blueButtonUpTex);
 
 
 	/* SETTING POSITIONS */

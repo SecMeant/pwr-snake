@@ -26,8 +26,6 @@ private:
 	Board board;
 
 	// Textures
-	sf::Texture tileTexture;
-	sf::Texture cherryTexture;
 	sf::RectangleShape tile;
 
 	// Buttons
@@ -39,7 +37,6 @@ private:
 	// Initializing helpers
 	inline void initializeBoard();
 	inline void initializeButtons();
-	inline void loadTextures();
 
 	/* Helpers for handling mouse events 
 	 *

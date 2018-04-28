@@ -8,7 +8,6 @@ GameScene::GameScene
 	this->background.assetPath = TextureManager::brickBackgroundTexPath;
 	this->initializeBackground();
 	this->initializeBoard();
-	this->loadTextures();
 	this->initializeButtons();
 }
 
@@ -56,17 +55,11 @@ void GameScene::initializeButtons()
 {
 	/* SETIING TEXTURES */
 	this->returnMainMenu.loadTextures
-	(TextureManager::redButtonDownTexPath,
-	 TextureManager::redButtonUpTexPath);
+	(&TextureManager::redButtonDownTex,
+	 &TextureManager::redButtonUpTex);
 
 	/* SETTING POSITIONS */
 	this->returnMainMenu.sprite.setPosition(500, 530);
-}
-
-void GameScene::loadTextures()
-{
-	this->tileTexture.loadFromFile(TextureManager::tileTexturePath);
-	this->cherryTexture.loadFromFile(TextureManager::cherryTexturePath);
 }
 
 sceneID GameScene::handleMousePressed(const sf::Event &mev)
@@ -106,7 +99,7 @@ void GameScene::drawBoard()
 	int32_t wrapCounter = 0;
 
 	sf::RectangleShape tile;
-	tile.setTexture(&this->tileTexture, true);
+	tile.setTexture(&TextureManager::tileTexture, true);
 	tile.setSize(sf::Vector2f(Board::tileWidth,Board::tileHeight));
 
 	for(auto i:this->board.tiles)
@@ -118,9 +111,9 @@ void GameScene::drawBoard()
 		
 		if(i==TileState::cherry)
 		{
-			tile.setTexture(&this->cherryTexture, true);
+			tile.setTexture(&TextureManager::cherryTexture, true);
 			this->parentWindow->draw(tile);
-			tile.setTexture(&this->tileTexture, true);
+			tile.setTexture(&TextureManager::tileTexture, true);
 		}
 
 		currx += Board::tileWidth;

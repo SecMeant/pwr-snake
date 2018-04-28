@@ -2,6 +2,7 @@
 #define TEXTUREMANAGER_H
 
 #include "stdint.h"
+#include <SFML/Graphics.hpp>
 
 class TextureManager
 {
@@ -9,7 +10,21 @@ private:
 	// Prevents from creating more than one TextureManager
 	static int32_t lifecount;
 
+	inline void loadTextures();
 public:
+	// Textures
+	static sf::Texture brickBackgroundTex;
+	static sf::Texture highscoresBackgroundTex;
+	static sf::Texture tileTexture;
+	static sf::Texture cherryTexture;
+	static sf::Texture redButtonDownTex;
+	static sf::Texture redButtonUpTex;
+	static sf::Texture yellowButtonDownTex;
+	static sf::Texture yellowButtonUpTex;
+	static sf::Texture blueButtonDownTex;
+	static sf::Texture blueButtonUpTex;
+	static sf::Texture blueSliderLeftTex;
+
 	static constexpr const char *brickBackgroundTexPath 
 		= "./assets/default-background.png";
 
@@ -44,6 +59,7 @@ public:
 		= "./assets/blue_sliderLeft.png";
 
 	TextureManager();
+	~TextureManager();
 };
 
 #endif // TEXTUREMANAGER_H

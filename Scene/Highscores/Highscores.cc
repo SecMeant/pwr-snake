@@ -52,7 +52,8 @@ sceneID Highscores::eventLoop()
 void Highscores::initializeButtons()
 {
 	/* SETTING TEXTURES */
-	this->returnButton.loadTextures(TextureManager::blueSliderLeftTexPath);
+	this->returnButton.loadTextures
+	(&TextureManager::blueSliderLeftTex);
 
 	/* SETTING POSITIONS */
 	this->returnButton.sprite.setPosition(700,500);
