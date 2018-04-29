@@ -39,8 +39,8 @@ void TextureManager::loadTextures()
 	TextureManager::blueButtonDownTex.loadFromFile(this->blueButtonDownTexPath);
 	TextureManager::blueButtonUpTex.loadFromFile(this->blueButtonUpTexPath);
 	TextureManager::blueSliderLeftTex.loadFromFile(this->blueSliderLeftTexPath);
-	TextureManager::snakeHeadTex.loadFromFile(this->blueSliderLeftTexPath);
-	TextureManager::snakeHeadTex.loadFromFile(this->blueSliderLeftTexPath);
+	TextureManager::snakeHeadTex.loadFromFile(this->snakeHeadTexPath);
+	TextureManager::snakeBodyTex.loadFromFile(this->snakeBodyTexPath);
 }
 
 TextureManager::~TextureManager()

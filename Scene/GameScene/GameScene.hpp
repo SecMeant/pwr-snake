@@ -2,6 +2,7 @@
 #define GAMESCENE_H
 
 #include "../Scene.hpp"
+#include "Snake/Snake.hpp"
 #include "Board/Board.hpp"
 
 #include "../../utility/stdshared.hpp"
@@ -24,6 +25,7 @@ class GameScene:public Scene
 {
 private:
 	Board board;
+	Snake snake;
 
 	// Textures
 	sf::RectangleShape tile;
@@ -33,9 +35,11 @@ private:
 
 	virtual sceneID eventLoop() override;
 	inline void drawBoard();
+	inline void drawSnake();
 
 	// Initializing helpers
 	inline void initializeBoard();
+	inline void initializeSnake();
 	inline void initializeButtons();
 
 	/* Helpers for handling mouse events 

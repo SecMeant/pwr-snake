@@ -61,10 +61,10 @@ public:
 		= "./assets/blue_sliderLeft.png";
 
 	static constexpr const char *snakeHeadTexPath
-		= "./assets/blue_sliderLeft.png";
+		= "./assets/snakeHead.png";
 
 	static constexpr const char *snakeBodyTexPath
-		= "./assets/blue_sliderLeft.png";
+		= "./assets/snakeBody.png";
 
 	TextureManager();
 	~TextureManager();

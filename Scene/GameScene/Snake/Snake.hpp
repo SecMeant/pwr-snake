@@ -1,6 +1,8 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include <stdio.h>
+
 #include <vector>
 #include <stdint.h>
 #include <utility>
@@ -23,6 +25,14 @@ public:
 	// makes its body length 3
 	void spawn(int32_t x, int32_t y);
 
+	inline std::vector<std::pair<int32_t, int32_t> >::const_iterator getBodyBegin()
+	{return this->body.cbegin();}
+
+	inline std::vector<std::pair<int32_t, int32_t> >::const_iterator getBodyEnd()
+	{return this->body.cend();}
+
+	// prints debug info
+	void debug_info();
 };
 
 #endif // SNAKE_H

@@ -2,7 +2,7 @@
 
 GameScene::GameScene
 (const std::shared_ptr<sf::RenderWindow> &wnd)
-:Scene(wnd)
+:Scene(wnd), board() /*initialized later*/, snake()
 {
 	puts("Creating game scene");
 	this->background.assetPath = TextureManager::brickBackgroundTexPath;
@@ -40,6 +40,7 @@ sceneID GameScene::eventLoop()
 		this->parentWindow->draw(this->background.shape);
 		this->parentWindow->draw(this->returnMainMenu.sprite);
 		this->drawBoard();
+		this->drawSnake();
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
@@ -128,9 +129,43 @@ void GameScene::drawBoard()
 	return;
 }
 
+void GameScene::drawSnake()
+{
+	float pixelOffsetX = Board::boardxOffset;
+	float pixelOffsetY = Board::boardyOffset;
+
+	sf::RectangleShape snakePart;
+	snakePart.setTexture(&TextureManager::snakeHeadTex, true);
+	snakePart.setSize(sf::Vector2f(30.0f,30.0f));
+	
+	auto it = this->snake.getBodyBegin();
+	auto itend = this->snake.getBodyEnd();
+	
+	// drawing head
+	snakePart.setPosition
+		(Board::boardxOffset+it->first*Board::tileWidth+5,
+		 Board::boardyOffset+it->second*Board::tileHeight+5);
+	this->parentWindow->draw(snakePart);
+	++it;
+
+	snakePart.setTexture(&TextureManager::snakeBodyTex, true);
+	snakePart.setSize(sf::Vector2f(30.0f,30.0f));
+	// drawing body
+	while(it != itend)
+	{
+		snakePart.setPosition
+			(Board::boardxOffset+it->first*Board::tileWidth+5,
+			 Board::boardyOffset+it->second*Board::tileHeight+5);
+		this->parentWindow->draw(snakePart);
+		++it;
+	}
+}
+
 sceneID GameScene::switchScene()
 {
 	puts("Switching to GameScene");
+	puts("Snake position:");
+	this->snake.debug_info();
 
 	// TODO
 	// Some returning animation ?

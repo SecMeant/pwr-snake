@@ -2,7 +2,7 @@
 
 Snake::Snake()
 {
-	body={{1,2},{3,4},{5,6}};
+	body={{0,2},{0,1},{0,0}};
 }
 
 void Snake::move(Direction d)
@@ -43,3 +43,11 @@ void Snake::spawn(int32_t x, int32_t y)
 }
 
 
+void Snake::debug_info()
+{
+	for(auto i:this->body)
+	{
+		printf("{%i,%i};",i.first,i.second);
+	}
+	putchar('\n');
+}
