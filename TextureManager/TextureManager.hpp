@@ -24,6 +24,8 @@ public:
 	static sf::Texture blueButtonDownTex;
 	static sf::Texture blueButtonUpTex;
 	static sf::Texture blueSliderLeftTex;
+	static sf::Texture snakeHeadTex;
+	static sf::Texture snakeBodyTex;
 
 	static constexpr const char *brickBackgroundTexPath 
 		= "./assets/default-background.png";
@@ -56,6 +58,12 @@ public:
 		= "./assets/blue_button_up.png";
 
 	static constexpr const char *blueSliderLeftTexPath
+		= "./assets/blue_sliderLeft.png";
+
+	static constexpr const char *snakeHeadTexPath
+		= "./assets/blue_sliderLeft.png";
+
+	static constexpr const char *snakeBodyTexPath
 		= "./assets/blue_sliderLeft.png";
 
 	TextureManager();

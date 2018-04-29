@@ -12,6 +12,8 @@ sf::Texture TextureManager::yellowButtonUpTex;
 sf::Texture TextureManager::blueButtonDownTex;
 sf::Texture TextureManager::blueButtonUpTex;
 sf::Texture TextureManager::blueSliderLeftTex;
+sf::Texture TextureManager::snakeHeadTex;
+sf::Texture TextureManager::snakeBodyTex;
 int32_t TextureManager::lifecount = 0;
 
 TextureManager::TextureManager()
@@ -37,6 +39,8 @@ void TextureManager::loadTextures()
 	TextureManager::blueButtonDownTex.loadFromFile(this->blueButtonDownTexPath);
 	TextureManager::blueButtonUpTex.loadFromFile(this->blueButtonUpTexPath);
 	TextureManager::blueSliderLeftTex.loadFromFile(this->blueSliderLeftTexPath);
+	TextureManager::snakeHeadTex.loadFromFile(this->blueSliderLeftTexPath);
+	TextureManager::snakeHeadTex.loadFromFile(this->blueSliderLeftTexPath);
 }
 
 TextureManager::~TextureManager()

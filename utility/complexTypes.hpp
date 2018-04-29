@@ -21,6 +21,14 @@ enum sceneID:int32_t
 	none = 1337
 };
 
+enum class Direction
+{
+	Up,
+	Down,
+	Left,
+	Right
+};
+
 class Button
 {
 public:
