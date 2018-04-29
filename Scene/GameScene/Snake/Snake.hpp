@@ -14,9 +14,9 @@ class Snake
 private:
 	// Holds X:Y as FIRST:SECOND of body parts of snake
 	std::vector<std::pair<int32_t,int32_t> > body;
-	
-	Direction movementDirection;
 public:
+	Direction movementDirection;
+	
 	explicit Snake();
 
 	void move(Direction d);

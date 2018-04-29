@@ -23,10 +23,10 @@ void Snake::move(Direction d)
 	switch(d)
 	{
 		case Direction::Up:
-			++(this->body.at(0).second);
+			--(this->body.at(0).second);
 			break;
 		case Direction::Down:
-			--(this->body.at(0).second);
+			++(this->body.at(0).second);
 			break;
 		case Direction::Left:
 			--(this->body.at(0).first);

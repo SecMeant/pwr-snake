@@ -25,15 +25,22 @@ sceneID GameScene::eventLoop()
 			{
 				if(this->handleMousePressed(event) != sceneID::none)
 					return this->handleMousePressed(event);
+				continue;
 			}
 
 			if(event.type == sf::Event::MouseButtonReleased)
 			{
 				if(this->handleMouseReleased(event) != sceneID::none)
 					return this->handleMouseReleased(event);
+				continue;
 			}
 
-			// TODO event handling
+			if(event.type == sf::Event::KeyPressed)
+			{
+				this->handleKeyPressed(event);
+				continue;
+			}
+
 		}
 
 		this->parentWindow->clear();
@@ -89,6 +96,42 @@ sceneID GameScene::handleMouseReleased(const sf::Event &mev)
 
 	this->returnMainMenu.release();
 	return ret;
+}
+
+void GameScene::handleKeyPressed(const sf::Event &kev)
+{
+	switch(kev.key.code)
+	{
+		#pragma GCC diagnostic ignored "-Wswitch"
+		case sf::Keyboard::Up:
+			puts("UP");
+			if(this->snake.movementDirection == Direction::Down)
+				break;
+			this->snake.movementDirection = Direction::Up;
+			this->snake.move(Direction::Up);
+			break;
+		case sf::Keyboard::Down:
+			puts("DOWN");
+			if(this->snake.movementDirection == Direction::Up)
+				break;
+			this->snake.movementDirection = Direction::Down;
+			this->snake.move(Direction::Down);
+			break;
+		case sf::Keyboard::Left:
+			puts("Left");
+			if(this->snake.movementDirection == Direction::Right)
+				break;
+			this->snake.movementDirection = Direction::Left;
+			this->snake.move(Direction::Left);
+			break;
+		case sf::Keyboard::Right:
+			puts("Right");
+			if(this->snake.movementDirection == Direction::Left)
+				break;
+			this->snake.movementDirection = Direction::Right;
+			this->snake.move(Direction::Right);
+			break;
+	}
 }
 
 void GameScene::drawBoard()

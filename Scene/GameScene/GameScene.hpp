@@ -52,6 +52,7 @@ private:
 	 * */
 	inline sceneID handleMousePressed(const sf::Event &mev);
 	inline sceneID handleMouseReleased(const sf::Event &mev);
+	inline void handleKeyPressed(const sf::Event &kev);
 public:
 	explicit GameScene
 	(const std::shared_ptr<sf::RenderWindow> &wnd);
