@@ -2,7 +2,8 @@
 
 GameScene::GameScene
 (const std::shared_ptr<sf::RenderWindow> &wnd)
-:Scene(wnd), board() /*initialized later*/, snake()
+:Scene(wnd), board() /*initialized later*/, snake(),
+ logic(this, snakeSettings::moveInterval)
 {
 	puts("Creating game scene");
 	this->background.assetPath = TextureManager::brickBackgroundTexPath;
@@ -48,6 +49,7 @@ sceneID GameScene::eventLoop()
 		this->parentWindow->draw(this->returnMainMenu.sprite);
 		this->drawBoard();
 		this->drawSnake();
+		this->logic.intervalMove();
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
@@ -102,34 +104,55 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 {
 	switch(kev.key.code)
 	{
-		#pragma GCC diagnostic ignored "-Wswitch"
 		case sf::Keyboard::Up:
 			puts("UP");
+			
 			if(this->snake.movementDirection == Direction::Down)
 				break;
+			if(!this->logic.isMoveInBoundary(Direction::Up))
+				break;
+			
 			this->snake.movementDirection = Direction::Up;
 			this->snake.move(Direction::Up);
 			break;
+		
 		case sf::Keyboard::Down:
 			puts("DOWN");
+
 			if(this->snake.movementDirection == Direction::Up)
 				break;
+			if(!this->logic.isMoveInBoundary(Direction::Down))
+				break;
+			
 			this->snake.movementDirection = Direction::Down;
 			this->snake.move(Direction::Down);
 			break;
+		
 		case sf::Keyboard::Left:
-			puts("Left");
 			if(this->snake.movementDirection == Direction::Right)
 				break;
+			if(!this->logic.isMoveInBoundary(Direction::Left))
+				break;
+			
 			this->snake.movementDirection = Direction::Left;
 			this->snake.move(Direction::Left);
 			break;
+	
 		case sf::Keyboard::Right:
 			puts("Right");
+			
 			if(this->snake.movementDirection == Direction::Left)
 				break;
+			if(!this->logic.isMoveInBoundary(Direction::Right))
+				break;
+			
 			this->snake.movementDirection = Direction::Right;
 			this->snake.move(Direction::Right);
+			break;
+		default:
+			
+			puts("Cheat eat");
+			this->snake.addBodyPart();
 			break;
 	}
 }
@@ -174,9 +197,6 @@ void GameScene::drawBoard()
 
 void GameScene::drawSnake()
 {
-	float pixelOffsetX = Board::boardxOffset;
-	float pixelOffsetY = Board::boardyOffset;
-
 	sf::RectangleShape snakePart;
 	snakePart.setTexture(&TextureManager::snakeHeadTex, true);
 	snakePart.setSize(sf::Vector2f(30.0f,30.0f));

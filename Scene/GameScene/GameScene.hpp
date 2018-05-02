@@ -4,6 +4,7 @@
 #include "../Scene.hpp"
 #include "Snake/Snake.hpp"
 #include "Board/Board.hpp"
+#include "Logic/Logic.hpp"
 
 #include "../../utility/stdshared.hpp"
 
@@ -21,11 +22,17 @@ namespace boardSettings
 	constexpr int32_t boardHeight = 12;
 };
 
+namespace snakeSettings
+{
+	constexpr float moveInterval = 0.5f;
+};
+
 class GameScene:public Scene
 {
 private:
 	Board board;
 	Snake snake;
+	Logic logic;
 
 	// Textures
 	sf::RectangleShape tile;
@@ -58,6 +65,8 @@ public:
 	(const std::shared_ptr<sf::RenderWindow> &wnd);
 
 	virtual sceneID switchScene() override;
+
+	friend class Logic;
 };
 
 #endif // GAMESCENE_H

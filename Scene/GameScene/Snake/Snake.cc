@@ -2,7 +2,7 @@
 
 Snake::Snake()
 {
-	body={{0,2},{0,1},{0,0}};
+	this->spawn(0,2);
 }
 
 void Snake::move(Direction d)
@@ -34,14 +34,27 @@ void Snake::move(Direction d)
 		case Direction::Right:
 			++(this->body.at(0).first);
 			break;
+		default:
+			break;
 	}
+}
+
+void Snake::move()
+{
+	this->move(this->movementDirection);
 }
 
 void Snake::spawn(int32_t x, int32_t y)
 {
-	this->body={{x,y},{x,y-1},{x,y-2}};
+	this->movementDirection = Direction::Down;
+	this->body={{x,y},{x,y-1},{x,y-2},
+		          {x,y-3}/*invisible part*/};
 }
 
+void Snake::addBodyPart()
+{
+	this->body.push_back(*(this->body.cend()--));
+}
 
 void Snake::debug_info()
 {
