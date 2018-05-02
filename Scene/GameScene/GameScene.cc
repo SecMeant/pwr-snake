@@ -113,7 +113,6 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 				break;
 			
 			this->snake.movementDirection = Direction::Up;
-			this->snake.move(Direction::Up);
 			break;
 		
 		case sf::Keyboard::Down:
@@ -125,7 +124,6 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 				break;
 			
 			this->snake.movementDirection = Direction::Down;
-			this->snake.move(Direction::Down);
 			break;
 		
 		case sf::Keyboard::Left:
@@ -135,7 +133,6 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 				break;
 			
 			this->snake.movementDirection = Direction::Left;
-			this->snake.move(Direction::Left);
 			break;
 	
 		case sf::Keyboard::Right:
@@ -147,7 +144,6 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 				break;
 			
 			this->snake.movementDirection = Direction::Right;
-			this->snake.move(Direction::Right);
 			break;
 		default:
 			
