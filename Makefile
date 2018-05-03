@@ -8,14 +8,16 @@ OBJDIR=obj
 ifdef ComSpec
 appname=snake.exe
 removeObj=del /Q obj\*
+mkobjdir=@if not exist obj\\ mkdir obj\\
 else
 appname=snake.out
 removeObj=rm ./obj/*
+mkobjdir=mkdir -p obj/
 endif 
 
 OBJ = $(addprefix $(OBJDIR)/, $(OBJS))
 
-.PHONY : clean
+.PHONY : clean prepare
 
 all linux: $(OBJ)
 	$(CC) $(OBJ) $(CFLAGS) $(sfmlso) -o $(appname)
@@ -55,3 +57,6 @@ $(OBJDIR)/texturemanager.o: TextureManager/TextureManager.cc
 
 clean:
 	$(removeObj)
+
+prepare:
+	$(mkobjdir)
