@@ -2,7 +2,33 @@
 #include "../GameScene.hpp"
 
 Logic::Logic(GameScene *p, float mvInt)
-:parent(p), moveInterval(mvInt){}
+:parent(p), moveInterval(mvInt), gameState(GameState::Over){}
+
+bool Logic::isTileSnakeFree(int32_t x, int32_t y) const
+{
+	auto it = this->parent->snake.getBodyBegin();
+	auto itend = this->parent->snake.getBodyEnd();
+	while(it != itend)
+	{
+		if(x == it->first && y == it->second)
+			return false;
+		++it;
+	}
+	return true;
+}
+
+bool Logic::checkEating()
+{
+	if(*(this->parent->snake.getBodyBegin()) == this->parent->cherryCoords)
+	{
+		this->parent->pointsCount++;
+		this->parent->snake.addBodyPart();
+		this->spawnCherry();
+		return true;
+	}
+
+	return false;
+}
 
 bool Logic::isMoveInBoundary(Direction d) const
 {
@@ -31,7 +57,7 @@ bool Logic::isMoveInBoundary(Direction d) const
 	return false;
 }
 
-bool Logic::isSnakeSelfeating()
+bool Logic::isSnakeSelfeating() const
 {
 	auto head = this->parent->snake.getBodyBegin();
 	auto it = head;
@@ -39,10 +65,41 @@ bool Logic::isSnakeSelfeating()
 	++it;
 	while(it != itend)
 	{
-		if(head == it)
+		if((head->first == it->first) && (head->second == it->second))
 			return true;
+		++it;
 	}
 	return false;
+}
+
+void Logic::spawnCherry()
+{
+	int32_t x,y;
+
+	// Infinite loop below if i dont check that
+	if(this->parent->snake.getBodySize() ==
+		 this->parent->board.width * this->parent->board.height)
+	{
+		return;
+	}
+
+	do
+	{
+		x = this->randGenerator() % this->parent->board.width;
+		y = this->randGenerator() % this->parent->board.height;
+	}while(!this->isTileSnakeFree(x,y));
+
+	this->parent->cherryCoords = {x,y};
+}
+
+void Logic::resetGameState()
+{
+	this->gameState = GameState::Pending;
+	this->parent->pointsCount = 0;
+
+	// Reset random generator
+	this->randGenerator.seed
+		(std::chrono::system_clock::now().time_since_epoch().count());
 }
 
 void Logic::intervalMove()
@@ -53,6 +110,14 @@ void Logic::intervalMove()
 	diff = std::chrono::system_clock::now() - lastCheck;
 	if(diff.count() >= this->moveInterval)
 	{
+		if(!this->isMoveInBoundary(this->parent->snake.movementDirection) ||
+			 this->isSnakeSelfeating())
+		{
+			this->gameState = GameState::Over;
+			printf("GameOver!\nScore:%i",this->parent->pointsCount);
+			return;
+		}
+
 		this->parent->snake.move();
 		lastCheck = std::chrono::system_clock::now();
 	}

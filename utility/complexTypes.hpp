@@ -29,6 +29,12 @@ enum class Direction
 	Right
 };
 
+enum class GameState
+{
+	Pending,
+	Over
+};
+
 class Button
 {
 public:

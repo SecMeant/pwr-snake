@@ -3,7 +3,8 @@
 GameScene::GameScene
 (const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd), board() /*initialized later*/, snake(),
- logic(this, snakeSettings::moveInterval)
+ logic(this, snakeSettings::moveInterval), cherryCoords({0,0}),
+ pointsCount(0)
 {
 	puts("Creating game scene");
 	this->background.assetPath = TextureManager::brickBackgroundTexPath;
@@ -14,6 +15,10 @@ GameScene::GameScene
 
 sceneID GameScene::eventLoop()
 {
+	this->logic.resetGameState();
+	this->snake.spawn(0,2);
+	this->logic.spawnCherry();
+
 	while (this->parentWindow->isOpen())
 	{
 		sf::Event event;
@@ -41,15 +46,14 @@ sceneID GameScene::eventLoop()
 				this->handleKeyPressed(event);
 				continue;
 			}
-
 		}
 
+		if(this->logic.getGameState() == GameState::Pending)
+			this->logic.intervalMove();
+
+		this->logic.checkEating();
 		this->parentWindow->clear();
-		this->parentWindow->draw(this->background.shape);
-		this->parentWindow->draw(this->returnMainMenu.sprite);
-		this->drawBoard();
-		this->drawSnake();
-		this->logic.intervalMove();
+		this->renderGameTick();
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
@@ -105,55 +109,36 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 	switch(kev.key.code)
 	{
 		case sf::Keyboard::Up:
-			puts("UP");
-			
 			if(this->snake.movementDirection == Direction::Down)
 				break;
-			if(!this->logic.isMoveInBoundary(Direction::Up))
-				break;
-			
 			this->snake.movementDirection = Direction::Up;
 			break;
 		
 		case sf::Keyboard::Down:
-			puts("DOWN");
-
 			if(this->snake.movementDirection == Direction::Up)
 				break;
-			if(!this->logic.isMoveInBoundary(Direction::Down))
-				break;
-			
 			this->snake.movementDirection = Direction::Down;
 			break;
 		
 		case sf::Keyboard::Left:
 			if(this->snake.movementDirection == Direction::Right)
 				break;
-			if(!this->logic.isMoveInBoundary(Direction::Left))
-				break;
-			
 			this->snake.movementDirection = Direction::Left;
 			break;
 	
 		case sf::Keyboard::Right:
-			puts("Right");
-			
 			if(this->snake.movementDirection == Direction::Left)
 				break;
-			if(!this->logic.isMoveInBoundary(Direction::Right))
-				break;
-			
 			this->snake.movementDirection = Direction::Right;
 			break;
+
 		default:
-			
-			puts("Cheat eat");
 			this->snake.addBodyPart();
 			break;
 	}
 }
 
-void GameScene::drawBoard()
+void GameScene::drawBoard() const
 {
 	// current pixel offset
 	float currx = Board::boardxOffset;
@@ -191,7 +176,7 @@ void GameScene::drawBoard()
 	return;
 }
 
-void GameScene::drawSnake()
+void GameScene::drawSnake() const
 {
 	sf::RectangleShape snakePart;
 	snakePart.setTexture(&TextureManager::snakeHeadTex, true);
@@ -220,14 +205,32 @@ void GameScene::drawSnake()
 	}
 }
 
+void GameScene::drawCherry() const
+{
+	sf::RectangleShape cherry;
+	cherry.setTexture(&TextureManager::cherryTexture, true);
+	cherry.setSize(sf::Vector2f(40.0f, 40.0f));
+	cherry.setPosition
+		(Board::boardxOffset+this->cherryCoords.first*Board::tileWidth,
+		 Board::boardyOffset+this->cherryCoords.second*Board::tileHeight);
+	this->parentWindow->draw(cherry);
+}
+
 sceneID GameScene::switchScene()
 {
 	puts("Switching to GameScene");
-	puts("Snake position:");
-	this->snake.debug_info();
-
-	// TODO
-	// Some returning animation ?
-
 	return this->eventLoop();
 }
+
+void GameScene::renderGameTick() const
+{
+		this->parentWindow->draw(this->background.shape);
+		this->parentWindow->draw(this->returnMainMenu.sprite);
+		this->drawBoard();
+		this->drawSnake();
+		this->drawCherry();
+}
+
+
+
+

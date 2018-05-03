@@ -41,6 +41,9 @@ public:
 	inline std::vector<std::pair<int32_t, int32_t> >::const_iterator getBodyEnd() const
 	{return --this->body.cend();}
 
+	inline int32_t getBodySize() const  
+	{return this->body.size();}
+
 	// prints debug info
 	void debug_info();
 };

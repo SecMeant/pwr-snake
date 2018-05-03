@@ -24,7 +24,7 @@ namespace boardSettings
 
 namespace snakeSettings
 {
-	constexpr float moveInterval = 0.5f;
+	constexpr float moveInterval = 0.1f;
 };
 
 class GameScene:public Scene
@@ -33,16 +33,20 @@ private:
 	Board board;
 	Snake snake;
 	Logic logic;
+	std::pair<int32_t, int32_t> cherryCoords;
 
-	// Textures
-	sf::RectangleShape tile;
+	int32_t pointsCount;
 
 	// Buttons
 	Button returnMainMenu;
 
 	virtual sceneID eventLoop() override;
-	inline void drawBoard();
-	inline void drawSnake();
+	inline void drawBoard() const;
+	inline void drawSnake() const;
+	inline void drawCherry() const;
+
+	// Calls all methods that draws elements every game frame
+	inline void renderGameTick() const;
 
 	// Initializing helpers
 	inline void initializeBoard();
