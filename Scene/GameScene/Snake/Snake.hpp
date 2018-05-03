@@ -20,6 +20,9 @@ private:
 	std::vector<std::pair<int32_t,int32_t> > body;
 public:
 	Direction movementDirection;
+
+	// Holds value of last movement direction
+	Direction lastMovementDirection;
 	
 	explicit Snake();
 

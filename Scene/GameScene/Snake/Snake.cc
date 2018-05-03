@@ -1,6 +1,7 @@
 #include "Snake.hpp"
 
 Snake::Snake()
+:movementDirection(Direction::Down), lastMovementDirection(Direction::Down)
 {
 	this->spawn(0,2);
 }
@@ -37,6 +38,8 @@ void Snake::move(Direction d)
 		default:
 			break;
 	}
+
+	this->lastMovementDirection = d;
 }
 
 void Snake::move()
@@ -47,6 +50,7 @@ void Snake::move()
 void Snake::spawn(int32_t x, int32_t y)
 {
 	this->movementDirection = Direction::Down;
+	this->lastMovementDirection = Direction::Down;
 	this->body={{x,y},{x,y-1},{x,y-2},
 		          {x,y-3}/*invisible part*/};
 }

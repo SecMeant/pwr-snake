@@ -118,7 +118,37 @@ void Logic::intervalMove()
 			return;
 		}
 
+		if(!this->isMoveValid())
+		{
+			this->parent->snake.movementDirection =
+			this->parent->snake.lastMovementDirection;
+		}
+
 		this->parent->snake.move();
+
 		lastCheck = std::chrono::system_clock::now();
 	}
+}
+
+bool Logic::isMoveValid()
+{
+	auto revMove = reverseDirection(this->parent->snake.movementDirection);
+	if(revMove == this->parent->snake.lastMovementDirection)
+		return false;
+	return true;
+}
+
+Direction Logic::reverseDirection(Direction d)
+{
+	if(d == Direction::Up)
+		return Direction::Down;
+
+	if(d == Direction::Down)
+		return Direction::Up;
+
+	if(d == Direction::Left)
+		return Direction::Right;
+
+	return Direction::Left;
+
 }

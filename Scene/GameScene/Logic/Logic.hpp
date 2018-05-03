@@ -51,6 +51,12 @@ public:
 	// direction if time since last move passed
 	// this->moveInterval.
 	void intervalMove();
+
+	// Checks if snake isnt going in reverse
+	bool isMoveValid();
+
+	// returns reverse direction to given in arg
+	Direction reverseDirection(Direction d);
 };
 
 #endif // LOGIC_H
