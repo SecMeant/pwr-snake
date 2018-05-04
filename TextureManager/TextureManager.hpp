@@ -11,6 +11,7 @@ private:
 	static int32_t lifecount;
 
 	inline void loadTextures();
+	inline void loadFonts();
 public:
 	// Textures
 	static sf::Texture brickBackgroundTex;
@@ -26,6 +27,8 @@ public:
 	static sf::Texture blueSliderLeftTex;
 	static sf::Texture snakeHeadTex;
 	static sf::Texture snakeBodyTex;
+
+	static sf::Font defaultFont;
 
 	static constexpr const char *brickBackgroundTexPath 
 		= "./assets/default-background.png";
@@ -65,6 +68,9 @@ public:
 
 	static constexpr const char *snakeBodyTexPath
 		= "./assets/snakeBody.png";
+
+	static constexpr const char *defaultFontPath
+		= "./assets/font/orange_juice.ttf";
 
 	TextureManager();
 	~TextureManager();

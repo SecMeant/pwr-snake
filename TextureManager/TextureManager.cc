@@ -14,6 +14,8 @@ sf::Texture TextureManager::blueButtonUpTex;
 sf::Texture TextureManager::blueSliderLeftTex;
 sf::Texture TextureManager::snakeHeadTex;
 sf::Texture TextureManager::snakeBodyTex;
+
+sf::Font TextureManager::defaultFont;
 int32_t TextureManager::lifecount = 0;
 
 TextureManager::TextureManager()
@@ -24,6 +26,7 @@ TextureManager::TextureManager()
 	++lifecount;
 
 	this->loadTextures();
+	this->loadFonts();
 }
 
 void TextureManager::loadTextures()
@@ -41,6 +44,11 @@ void TextureManager::loadTextures()
 	TextureManager::blueSliderLeftTex.loadFromFile(this->blueSliderLeftTexPath);
 	TextureManager::snakeHeadTex.loadFromFile(this->snakeHeadTexPath);
 	TextureManager::snakeBodyTex.loadFromFile(this->snakeBodyTexPath);
+}
+
+void TextureManager::loadFonts()
+{
+	TextureManager::defaultFont.loadFromFile(this->defaultFontPath);
 }
 
 TextureManager::~TextureManager()

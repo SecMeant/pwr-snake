@@ -11,6 +11,7 @@ GameScene::GameScene
 	this->initializeBackground();
 	this->initializeBoard();
 	this->initializeButtons();
+	this->initializeLabels();
 }
 
 sceneID GameScene::eventLoop()
@@ -74,6 +75,22 @@ void GameScene::initializeButtons()
 
 	/* SETTING POSITIONS */
 	this->returnMainMenu.sprite.setPosition(500, 530);
+}
+
+void GameScene::initializeLabels()
+{
+	this->updateScoreString();
+	this->scoreString.setFont(TextureManager::defaultFont);
+	this->scoreString.setCharacterSize(42);
+	this->scoreString.setColor(sf::Color::White);
+	this->scoreString.setPosition(50,530);
+}
+
+void GameScene::updateScoreString() const
+{
+	std::string labelString("Score: ");
+	labelString += std::to_string(this->pointsCount);
+	this->scoreString.setString(labelString.c_str());
 }
 
 sceneID GameScene::handleMousePressed(const sf::Event &mev)
@@ -216,6 +233,11 @@ void GameScene::drawCherry() const
 	this->parentWindow->draw(cherry);
 }
 
+void GameScene::drawScore() const
+{
+	this->parentWindow->draw(this->scoreString);
+}
+
 sceneID GameScene::switchScene()
 {
 	puts("Switching to GameScene");
@@ -229,6 +251,8 @@ void GameScene::renderGameTick() const
 		this->drawBoard();
 		this->drawSnake();
 		this->drawCherry();
+		this->updateScoreString();
+		this->drawScore();
 }
 
 

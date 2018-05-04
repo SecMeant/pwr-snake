@@ -37,7 +37,7 @@ bool Logic::isMoveInBoundary(Direction d) const
 	switch(d)
 	{
 		case Direction::Up:
-			if(snakesHead->second == 0)
+			if(snakesHead->second <= 0)
 				return false;
 			return true;
 		case Direction::Down:
@@ -49,7 +49,7 @@ bool Logic::isMoveInBoundary(Direction d) const
 				return false;
 			return true;
 		case Direction::Left:
-			if(snakesHead->first == 0)
+			if(snakesHead->first <= 0)
 				return false;
 			return true;
 	}
@@ -114,7 +114,7 @@ void Logic::intervalMove()
 			 this->isSnakeSelfeating())
 		{
 			this->gameState = GameState::Over;
-			printf("GameOver!\nScore:%i",this->parent->pointsCount);
+			printf("GameOver!\nScore:%i\n",this->parent->pointsCount);
 			return;
 		}
 

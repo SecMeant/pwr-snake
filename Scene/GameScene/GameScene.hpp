@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 // Settings are picked manualy
 // This might not be the best way
@@ -24,7 +25,7 @@ namespace boardSettings
 
 namespace snakeSettings
 {
-	constexpr float moveInterval = 0.1f;
+	constexpr float moveInterval = 0.15f;
 };
 
 class GameScene:public Scene
@@ -40,18 +41,24 @@ private:
 	// Buttons
 	Button returnMainMenu;
 
+	mutable sf::Text scoreString;
+
 	virtual sceneID eventLoop() override;
 	inline void drawBoard() const;
 	inline void drawSnake() const;
 	inline void drawCherry() const;
+	inline void drawScore() const;
 
 	// Calls all methods that draws elements every game frame
 	inline void renderGameTick() const;
+
+	inline void updateScoreString() const;
 
 	// Initializing helpers
 	inline void initializeBoard();
 	inline void initializeSnake();
 	inline void initializeButtons();
+	inline void initializeLabels();
 
 	/* Helpers for handling mouse events 
 	 *
