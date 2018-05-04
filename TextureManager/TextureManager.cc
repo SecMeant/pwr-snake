@@ -16,6 +16,7 @@ sf::Texture TextureManager::snakeHeadTex;
 sf::Texture TextureManager::snakeBodyTex;
 
 sf::Font TextureManager::defaultFont;
+sf::Font TextureManager::mushyLove;
 int32_t TextureManager::lifecount = 0;
 
 TextureManager::TextureManager()
@@ -44,6 +45,7 @@ void TextureManager::loadTextures()
 	TextureManager::blueSliderLeftTex.loadFromFile(this->blueSliderLeftTexPath);
 	TextureManager::snakeHeadTex.loadFromFile(this->snakeHeadTexPath);
 	TextureManager::snakeBodyTex.loadFromFile(this->snakeBodyTexPath);
+	TextureManager::mushyLove.loadFromFile(this->mushyLovePath);
 }
 
 void TextureManager::loadFonts()

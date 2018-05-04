@@ -29,6 +29,7 @@ public:
 	static sf::Texture snakeBodyTex;
 
 	static sf::Font defaultFont;
+	static sf::Font mushyLove;
 
 	static constexpr const char *brickBackgroundTexPath 
 		= "./assets/default-background.png";
@@ -71,6 +72,9 @@ public:
 
 	static constexpr const char *defaultFontPath
 		= "./assets/font/orange_juice.ttf";
+
+	static constexpr const char *mushyLovePath
+		= "./assets/font/mushy_love.ttf";
 
 	TextureManager();
 	~TextureManager();
