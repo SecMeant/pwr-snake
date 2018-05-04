@@ -1,5 +1,9 @@
 #include "GameScene.hpp"
 
+#ifdef _WIN32
+#define setColor(arg) setFillColor(arg)
+#endif // _WIN32
+
 GameScene::GameScene
 (const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd), board() /*initialized later*/, snake(),
@@ -255,6 +259,6 @@ void GameScene::renderGameTick() const
 		this->drawScore();
 }
 
-
-
-
+#ifdef setColor
+#undef setColor
+#endif // setColor
