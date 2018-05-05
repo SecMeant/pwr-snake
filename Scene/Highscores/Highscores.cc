@@ -13,15 +13,12 @@ Highscores::Highscores
 	this->initializeBackground();
 	this->initializeButtons();
 	this->initializeHeader();
-	this->loadScoresFromFile();	
 }
 
 sceneID Highscores::switchScene()	
 {
 	puts("Switching to Highscores");
-	entryType test = {"Holz","1337"};
-	this->orderedInsert(test);
-	this->logScores();
+	saveManager.loadScoresFromFile();
 
 	return this->eventLoop();
 }
@@ -69,32 +66,10 @@ void Highscores::initializeButtons()
 	this->returnButton.sprite.setPosition(700,500);
 }
 
-void Highscores::loadScoresFromFile
-(const char *filename)
-{
-	std::ifstream scoresfile;
-	std::string tableEntry;
-	std::string score;
-	entryType entry;
-
-	scoresfile.open(filename);
-	if(scoresfile.is_open())
-	{
-		this->highscoresTable.clear();
-		while(getline(scoresfile, tableEntry, ' '))
-		{
-			getline(scoresfile, score);
-			entry = {tableEntry, score};
-			this->orderedInsert(entry);
-		}
-	}
-	else printf("Error. Unable to open file %s.",filename);
-}
-
 void Highscores::drawScoreBoard()
 {
 	this->drawHeader();
-	this->drawScoreBoardEntries(10);
+	this->drawScoreBoardEntries(12);
 }
 
 void Highscores::drawHeader()
@@ -111,13 +86,15 @@ void Highscores::drawScoreBoardEntries
 	int32_t i = 1;
 	sf::Text tmp;
 	sf::Color color(226,184,26);
+	SaveManager::sBoardType highscoresTable;
+	highscoresTable = saveManager.getBoard();
 
 	tmp.setFont(TextureManager::mushyLove);
 	tmp.setCharacterSize(24);
 	tmp.setColor(color);
 	tmp.setPosition(scoreBoardSettings::nameOffset,currOffset);
 
-	for(auto entry:this->highscoresTable)
+	for(auto entry:highscoresTable)
 	{
 		if(i >= numberOfEntries)
 			break;
@@ -132,15 +109,6 @@ void Highscores::drawScoreBoardEntries
 		currOffset += scoreBoardSettings::topmargin;
 		tmp.setPosition(scoreBoardSettings::nameOffset,currOffset);
 		i++;
-	}
-}
-
-void Highscores::debug_print_scores()
-{
-	for(auto i:highscoresTable)
-	{
-		printf("%s %s\n",
-				std::get<0>(i).c_str(), std::get<1>(i).c_str());
 	}
 }
 
@@ -168,53 +136,6 @@ void Highscores::initializeHeader()
 	this->header.background.setSize
 		({scoreBoardSettings::headerWidth,
 		 scoreBoardSettings::headerHeight});
-}
-
-
-void Highscores::orderedInsert(const entryType &entry)
-{
-	int val = std::stoi(std::get<1>(entry));
-	auto it = this->highscoresTable.begin();
-	auto itend = this->highscoresTable.end();
-
-	if(this->highscoresTable.size() == 0)
-	{
-		this->highscoresTable.push_back(entry);
-		return;
-	}
-
-	while(it != itend)
-	{
-		if(std::stoi(std::get<1>(*it)) <= val)
-		{
-			this->highscoresTable.insert(it,entry);
-			return;
-		}
-		++it;
-	}
-	this->highscoresTable.push_back(entry);
-}
-
-void Highscores::addScore(const entryType &entry)
-{
-	this->orderedInsert(entry);
-	this->logScores();
-}
-
-void Highscores::logScores(const char *filename)
-{
-	std::ofstream outFile;
-	outFile.open(filename);
-	if(not outFile.is_open())
-	{
-		puts("Error while saving scores. Cannot open file.");
-		return;
-	}
-
-	for(auto entry:this->highscoresTable)
-	{
-		outFile << std::get<0>(entry) << " " << std::get<1>(entry) << '\n';
-	}
 }
 
 #ifdef setColor

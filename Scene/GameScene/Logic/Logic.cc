@@ -114,6 +114,7 @@ void Logic::intervalMove()
 			 this->isSnakeSelfeating())
 		{
 			this->gameState = GameState::Over;
+			saveManager.addScore({"mgot",std::to_string(this->parent->pointsCount)});
 			printf("GameOver!\nScore:%i\n",this->parent->pointsCount);
 			return;
 		}

@@ -5,12 +5,15 @@
 #include "Snake/Snake.hpp"
 #include "Board/Board.hpp"
 #include "Logic/Logic.hpp"
+#include "../../SaveManager/SaveManager.hpp"
 
 #include "../../utility/stdshared.hpp"
 
 #include <vector>
 #include <memory>
 #include <string>
+
+extern SaveManager saveManager;
 
 // Settings are picked manualy
 // This might not be the best way
