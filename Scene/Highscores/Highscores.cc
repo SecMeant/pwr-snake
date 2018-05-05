@@ -13,12 +13,15 @@ Highscores::Highscores
 	this->initializeBackground();
 	this->initializeButtons();
 	this->initializeHeader();
+	this->loadScoresFromFile();	
 }
 
 sceneID Highscores::switchScene()	
 {
 	puts("Switching to Highscores");
-	this->loadScoresFromFile();	
+	entryType test = {"Holz","1337"};
+	this->orderedInsert(test);
+	this->logScores();
 
 	return this->eventLoop();
 }
@@ -69,21 +72,20 @@ void Highscores::initializeButtons()
 void Highscores::loadScoresFromFile
 (const char *filename)
 {
-	using eType = std::tuple<std::string, std::string>;
-
 	std::ifstream scoresfile;
 	std::string tableEntry;
 	std::string score;
-	eType entry;
+	entryType entry;
 
 	scoresfile.open(filename);
 	if(scoresfile.is_open())
 	{
+		this->highscoresTable.clear();
 		while(getline(scoresfile, tableEntry, ' '))
 		{
 			getline(scoresfile, score);
 			entry = {tableEntry, score};
-			this->highscoresTable.push_back(entry);
+			this->orderedInsert(entry);
 		}
 	}
 	else printf("Error. Unable to open file %s.",filename);
@@ -92,7 +94,7 @@ void Highscores::loadScoresFromFile
 void Highscores::drawScoreBoard()
 {
 	this->drawHeader();
-	this->drawScoreBoardEntries(5);
+	this->drawScoreBoardEntries(10);
 }
 
 void Highscores::drawHeader()
@@ -166,6 +168,53 @@ void Highscores::initializeHeader()
 	this->header.background.setSize
 		({scoreBoardSettings::headerWidth,
 		 scoreBoardSettings::headerHeight});
+}
+
+
+void Highscores::orderedInsert(const entryType &entry)
+{
+	int val = std::stoi(std::get<1>(entry));
+	auto it = this->highscoresTable.begin();
+	auto itend = this->highscoresTable.end();
+
+	if(this->highscoresTable.size() == 0)
+	{
+		this->highscoresTable.push_back(entry);
+		return;
+	}
+
+	while(it != itend)
+	{
+		if(std::stoi(std::get<1>(*it)) <= val)
+		{
+			this->highscoresTable.insert(it,entry);
+			return;
+		}
+		++it;
+	}
+	this->highscoresTable.push_back(entry);
+}
+
+void Highscores::addScore(const entryType &entry)
+{
+	this->orderedInsert(entry);
+	this->logScores();
+}
+
+void Highscores::logScores(const char *filename)
+{
+	std::ofstream outFile;
+	outFile.open(filename);
+	if(not outFile.is_open())
+	{
+		puts("Error while saving scores. Cannot open file.");
+		return;
+	}
+
+	for(auto entry:this->highscoresTable)
+	{
+		outFile << std::get<0>(entry) << " " << std::get<1>(entry) << '\n';
+	}
 }
 
 #ifdef setColor

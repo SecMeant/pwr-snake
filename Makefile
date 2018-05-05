@@ -6,7 +6,7 @@ OBJS=main.o scene.o scenemanager.o mainmenu.o highscores.o gamescene.o board.o l
 OBJDIR=obj
 
 ifdef ComSpec
-appname=snake.exe
+appname=snake.exe my.res
 removeObj=del /Q obj\*
 mkobjdir=@if not exist obj\\ mkdir obj\\
 else

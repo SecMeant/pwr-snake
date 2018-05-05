@@ -5,8 +5,9 @@ SceneManager::SceneManager()
 {
 	puts("Creating scene manager");
 	this->mainWindow =
-		std::make_unique<sf::RenderWindow>(sf::VideoMode(800,600),
-				"Snake game");
+		std::make_unique<sf::RenderWindow>
+		(sf::VideoMode(800,600),
+		 "Snake game", sf::Style::Close);
 	this->mainWindow->setFramerateLimit(60);
 
 	this->registerScene<MainMenu>();
