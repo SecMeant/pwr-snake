@@ -49,23 +49,25 @@ sceneID MainMenu::eventLoop()
 void MainMenu::initializeButtons()
 {
 	constexpr int defStringSize = 32;
+	sf::Color deftextColor{0x46,0x21,0x1a};
+	sf::Color hovertextColor{0xa4,0x38,0x20};
 	/* SETTING LOOKS */
 	this->highscoresButton.setColors
-	({0xfb,0x65,0x42},{0xff,0xbb,0x00});
+	(deftextColor,hovertextColor);
 	this->highscoresButton.text.setFont(TextureManager::mushyLove);
 	this->highscoresButton.text.setString("HIGHSCORES");
 	this->highscoresButton.text.setCharacterSize(defStringSize);
 	
 	/* SETTING LOOKS */
 	this->startgameButton.setColors
-	({0xfb,0x65,0x42},{0xff,0xbb,0x00});
+	(deftextColor,hovertextColor);
 	this->startgameButton.text.setFont(TextureManager::mushyLove);
 	this->startgameButton.text.setString("START GAME");
 	this->startgameButton.text.setCharacterSize(defStringSize);
 	
 	/* SETTING POSITIONS */
-	this->startgameButton.text.setPosition(300,200);
-	this->highscoresButton.text.setPosition(300,300);
+	this->startgameButton.text.setPosition(50,450);
+	this->highscoresButton.text.setPosition(50,500);
 }
 
 void MainMenu::initializeHeader()
