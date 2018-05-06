@@ -11,3 +11,19 @@ bool TextButton::clicked(const sf::Event &ev)
 	}
 	return false;
 }
+
+void TextButton::handleHoverEvent(const sf::Event &ev)
+{
+	auto mousex = ev.mouseMove.x;
+	auto mousey = ev.mouseMove.y;
+
+	if(ev.type == sf::Event::MouseMoved)
+	{
+		if(this->text.getGlobalBounds().contains(mousex, mousey))
+		{
+			this->mouseEnter();
+			return;
+		}
+		this->mouseLeave();
+	}
+}

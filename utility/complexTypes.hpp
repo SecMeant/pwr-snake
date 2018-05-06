@@ -83,6 +83,7 @@ public:
 	TextButton(const sf::Font &font, sf::Color defC, sf::Color hc);
 
 	bool clicked(const sf::Event &ev);
+	void handleHoverEvent(const sf::Event &ev);
 
 	inline void setColors
 	(sf::Color defC, sf::Color hc)
@@ -96,6 +97,9 @@ public:
 	{this->text.setColor(this->hoveredColor);}
 
 	inline void mouseLeave()
+	{this->text.setColor(this->defaultColor);}
+
+	inline void reset()
 	{this->text.setColor(this->defaultColor);}
 };
 

@@ -19,6 +19,7 @@ sceneID Highscores::switchScene()
 {
 	puts("Switching to Highscores");
 	saveManager.loadScoresFromFile();
+	this->returnButton.reset();
 
 	return this->eventLoop();
 }
@@ -35,6 +36,8 @@ sceneID Highscores::eventLoop()
 			
 			if(this->returnButton.clicked(event))
 				return {sceneID::mainmenu};
+
+			this->returnButton.handleHoverEvent(event);
 		}
 
 		this->parentWindow->clear();
