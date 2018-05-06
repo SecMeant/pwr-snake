@@ -42,7 +42,7 @@ private:
 	int32_t pointsCount;
 
 	// Buttons
-	Button returnMainMenu;
+	TextButton returnMainMenu;
 
 	mutable sf::Text scoreString;
 
@@ -71,7 +71,7 @@ private:
 	 * sceneID::none is returned
 	 *
 	 * */
-	inline sceneID handleMousePressed(const sf::Event &mev);
+	void handleMouseHovers(const sf::Event &mev);
 	inline sceneID handleMouseReleased(const sf::Event &mev);
 	inline void handleKeyPressed(const sf::Event &kev);
 public:

@@ -32,18 +32,16 @@ sceneID GameScene::eventLoop()
 			if (event.type == sf::Event::Closed)
 				this->parentWindow->close();
 			
-			if(event.type == sf::Event::MouseButtonPressed)
-			{
-				if(this->handleMousePressed(event) != sceneID::none)
-					return this->handleMousePressed(event);
-				continue;
-			}
-
 			if(event.type == sf::Event::MouseButtonReleased)
 			{
 				if(this->handleMouseReleased(event) != sceneID::none)
 					return this->handleMouseReleased(event);
 				continue;
+			}
+
+			if(event.type == sf::Event::MouseMoved)
+			{
+				this->handleMouseHovers(event);
 			}
 
 			if(event.type == sf::Event::KeyPressed)
@@ -72,22 +70,25 @@ void GameScene::initializeBoard()
 
 void GameScene::initializeButtons()
 {
-	/* SETIING TEXTURES */
-	this->returnMainMenu.loadTextures
-	(&TextureManager::redButtonDownTex,
-	 &TextureManager::redButtonUpTex);
+	/* SETTING LOOKS */
+	this->returnMainMenu.setColors
+	({0x00,0x3b,0x46},{0x07,0x57,0x5b});
+	this->returnMainMenu.text.setFont(TextureManager::mushyLove);
+	this->returnMainMenu.text.setString("Return");
+	this->returnMainMenu.text.setCharacterSize(32);
 
 	/* SETTING POSITIONS */
-	this->returnMainMenu.sprite.setPosition(500, 530);
+	this->returnMainMenu.text.setPosition(550, 530);
 }
 
 void GameScene::initializeLabels()
 {
+	sf::Color textColor{0x00,0x3b,0x46};
 	this->updateScoreString();
 	this->scoreString.setFont(TextureManager::defaultFont);
 	this->scoreString.setCharacterSize(42);
-	this->scoreString.setColor(sf::Color::White);
-	this->scoreString.setPosition(50,530);
+	this->scoreString.setColor(textColor);
+	this->scoreString.setPosition(100,530);
 }
 
 void GameScene::updateScoreString() const
@@ -97,17 +98,9 @@ void GameScene::updateScoreString() const
 	this->scoreString.setString(labelString.c_str());
 }
 
-sceneID GameScene::handleMousePressed(const sf::Event &mev)
+void GameScene::handleMouseHovers(const sf::Event &mev)
 {
-	auto mousex = mev.mouseButton.x;
-	auto mousey = mev.mouseButton.y;
-
-	if(this->returnMainMenu.sprite.getGlobalBounds().contains(mousex, mousey))
-	{
-		this->returnMainMenu.press();
-	}
-
-	return {sceneID::none};
+	this->returnMainMenu.handleHoverEvent(mev);
 }
 
 sceneID GameScene::handleMouseReleased(const sf::Event &mev)
@@ -116,12 +109,11 @@ sceneID GameScene::handleMouseReleased(const sf::Event &mev)
 	auto mousey = mev.mouseButton.y;
 	sceneID ret = sceneID::none;
 
-	if(this->returnMainMenu.sprite.getGlobalBounds().contains(mousex, mousey))
+	if(this->returnMainMenu.text.getGlobalBounds().contains(mousex, mousey))
 	{
 		ret = sceneID::mainmenu;
 	}
 
-	this->returnMainMenu.release();
 	return ret;
 }
 
@@ -245,13 +237,14 @@ void GameScene::drawScore() const
 sceneID GameScene::switchScene()
 {
 	puts("Switching to GameScene");
+	this->returnMainMenu.reset();
 	return this->eventLoop();
 }
 
 void GameScene::renderGameTick() const
 {
 		this->parentWindow->draw(this->background.shape);
-		this->parentWindow->draw(this->returnMainMenu.sprite);
+		this->parentWindow->draw(this->returnMainMenu.text);
 		this->drawBoard();
 		this->drawSnake();
 		this->drawCherry();
