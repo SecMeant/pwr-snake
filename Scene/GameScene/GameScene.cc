@@ -11,7 +11,7 @@ GameScene::GameScene
  pointsCount(0)
 {
 	puts("Creating game scene");
-	this->background.assetPath = TextureManager::brickBackgroundTexPath;
+	this->background.assetPath = TextureManager::waterandsandBackgroundTexPath;
 	this->initializeBackground();
 	this->initializeBoard();
 	this->initializeButtons();

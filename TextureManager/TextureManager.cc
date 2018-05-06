@@ -2,6 +2,7 @@
 
 // Creation of static memebrs
 sf::Texture TextureManager::brickBackgroundTex;
+sf::Texture TextureManager::waterandsandBackgroundTex;
 sf::Texture TextureManager::highscoresBackgroundTex;
 sf::Texture TextureManager::tileTexture;
 sf::Texture TextureManager::cherryTexture;
@@ -33,6 +34,7 @@ TextureManager::TextureManager()
 void TextureManager::loadTextures()
 {
 	TextureManager::brickBackgroundTex.loadFromFile(this->brickBackgroundTexPath);
+	TextureManager::waterandsandBackgroundTex.loadFromFile(this->waterandsandBackgroundTexPath);
 	TextureManager::highscoresBackgroundTex.loadFromFile(this->highscoresBackgroundTexPath);
 	TextureManager::tileTexture.loadFromFile(this->tileTexturePath);
 	TextureManager::cherryTexture.loadFromFile(this->cherryTexturePath);

@@ -12,11 +12,13 @@
 class MainMenu: public Scene
 {
 private:
-	Button highscoresButton;
-	Button startgameButton;
+	TableHeader header;
+	TextButton highscoresButton;
+	TextButton startgameButton;
 
 	virtual sceneID eventLoop() override;
 	inline void initializeButtons();
+	void initializeHeader();
 
 	/* Helpers for handling mouse events 
 	 *
@@ -26,7 +28,7 @@ private:
 	 * sceneID::none is returned
 	 *
 	 * */
-	inline sceneID handleMousePressed(const sf::Event &mev);
+	inline void handleMouseHovers(const sf::Event &mev);
 	inline sceneID handleMouseReleased(const sf::Event &mev);
 public:
 	explicit MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd);

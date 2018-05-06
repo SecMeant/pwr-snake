@@ -53,13 +53,13 @@ void Highscores::initializeButtons()
 {
 	/* SETTING LOOKS */
 	this->returnButton.setColors
-	({255,255,255},{0,0,0});
+	({0x8d,0x23,0x0f},{0x9b,0x4f,0x0f});
 	this->returnButton.text.setFont(TextureManager::mushyLove);
 	this->returnButton.text.setString("Return");
 	this->returnButton.text.setCharacterSize(18);
 
 	/* SETTING POSITIONS */
-	this->returnButton.text.setPosition(400,500);
+	this->returnButton.text.setPosition(350,500);
 }
 
 void Highscores::drawScoreBoard()
@@ -110,16 +110,8 @@ void Highscores::drawScoreBoardEntries
 
 void Highscores::initializeHeader()
 {
-	sf::Color textColor;
-	sf::Color backgroundColor;
-
-	textColor.r = 226;
-	textColor.g = 184;
-	textColor.b = 46;
-
-	backgroundColor.r = 35;
-	backgroundColor.g = 34;
-	backgroundColor.b = 50;
+	sf::Color textColor{226,184,46};
+	sf::Color backgroundColor{35,34,50};
 
 	this->header.text.setFont(TextureManager::mushyLove);
 	this->header.text.setString(scoreBoardSettings::headerText);

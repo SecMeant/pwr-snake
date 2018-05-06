@@ -22,8 +22,8 @@ extern SaveManager saveManager;
 namespace boardSettings
 {
 	// Width and height are in tiles units
-	constexpr int32_t boardWidth = 18;
-	constexpr int32_t boardHeight = 12;
+	constexpr int32_t boardWidth = 14;
+	constexpr int32_t boardHeight = 9;
 };
 
 namespace snakeSettings

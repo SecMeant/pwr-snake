@@ -10,8 +10,8 @@ enum class TileState
 class Board
 {
 public:
-	static constexpr float boardxOffset = 40;
-	static constexpr float boardyOffset = 40;
+	static constexpr float boardxOffset = 120;
+	static constexpr float boardyOffset = 120;
 	static constexpr float tileWidth = 40;
 	static constexpr float tileHeight = 40;
 	

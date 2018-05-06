@@ -1,5 +1,9 @@
 #include "MainMenu.hpp"
 
+#ifdef _WIN32
+#define setColor(arg) setFillColor(arg)
+#endif // _WIN32
+
 MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd)
 {
@@ -7,6 +11,7 @@ MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
 	this->background.assetPath = TextureManager::brickBackgroundTexPath;
 	this->initializeBackground();
 	this->initializeButtons();
+	this->initializeHeader();
 }
 
 sceneID MainMenu::eventLoop()
@@ -19,26 +24,23 @@ sceneID MainMenu::eventLoop()
 			if (event.type == sf::Event::Closed)
 				this->parentWindow->close();
 			
-			if(event.type == sf::Event::MouseButtonPressed)
-			{
-				if(this->handleMousePressed(event) != sceneID::none)
-					return this->handleMousePressed(event);
-			}
-
 			if(event.type == sf::Event::MouseButtonReleased)
 			{
 				if(this->handleMouseReleased(event) != sceneID::none)
 					return this->handleMouseReleased(event);
 			}
 
-
-			// TODO event handling
+			if(event.type == sf::Event::MouseMoved)
+			{
+				this->handleMouseHovers(event);
+			}
 		}
 
 		this->parentWindow->clear();
 		this->parentWindow->draw(this->background.shape);
-		this->parentWindow->draw(this->highscoresButton.sprite);
-		this->parentWindow->draw(this->startgameButton.sprite);
+		this->parentWindow->draw(this->header.text);
+		this->parentWindow->draw(this->highscoresButton.text);
+		this->parentWindow->draw(this->startgameButton.text);
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
@@ -46,59 +48,56 @@ sceneID MainMenu::eventLoop()
 
 void MainMenu::initializeButtons()
 {
-	/* SETTING TEXTURES */
-	this->highscoresButton.loadTextures
-		(&TextureManager::yellowButtonDownTex,
-		 &TextureManager::yellowButtonUpTex);
-
-	this->startgameButton.loadTextures
-		(&TextureManager::blueButtonDownTex,
-		 &TextureManager::blueButtonUpTex);
-
-
+	constexpr int defStringSize = 32;
+	/* SETTING LOOKS */
+	this->highscoresButton.setColors
+	({0xfb,0x65,0x42},{0xff,0xbb,0x00});
+	this->highscoresButton.text.setFont(TextureManager::mushyLove);
+	this->highscoresButton.text.setString("HIGHSCORES");
+	this->highscoresButton.text.setCharacterSize(defStringSize);
+	
+	/* SETTING LOOKS */
+	this->startgameButton.setColors
+	({0xfb,0x65,0x42},{0xff,0xbb,0x00});
+	this->startgameButton.text.setFont(TextureManager::mushyLove);
+	this->startgameButton.text.setString("START GAME");
+	this->startgameButton.text.setCharacterSize(defStringSize);
+	
 	/* SETTING POSITIONS */
-	this->highscoresButton.sprite.setPosition(200,500);
-	this->startgameButton.sprite.setPosition(480,500);
+	this->startgameButton.text.setPosition(300,200);
+	this->highscoresButton.text.setPosition(300,300);
 }
 
-sceneID MainMenu::handleMousePressed(const sf::Event &mev)
+void MainMenu::initializeHeader()
 {
-	auto mousex = mev.mouseButton.x;
-	auto mousey = mev.mouseButton.y;
+	sf::Color textColor{0xfb,0x65,0x42};
 
-
-	if(this->startgameButton.sprite.getGlobalBounds().contains(mousex, mousey))
-	{
-		this->startgameButton.press();
-	}
-
-	if(this->highscoresButton.sprite.getGlobalBounds().contains(mousex, mousey))
-	{
-		this->highscoresButton.press();
-	}
-
-	return {sceneID::none};
+	this->header.text.setFont(TextureManager::mushyLove);
+	this->header.text.setString("Snake Game");
+	this->header.setPosition
+		(scoreBoardSettings::headerOffsetx,
+		 scoreBoardSettings::headerOffsety);
+	this->header.text.setColor(textColor);
+	this->header.text.setCharacterSize(64);
 }
 
 sceneID MainMenu::handleMouseReleased(const sf::Event &mev)
 {
-	auto mousex = mev.mouseButton.x;
-	auto mousey = mev.mouseButton.y;
 	sceneID ret = sceneID::none;
 
-	if(this->startgameButton.sprite.getGlobalBounds().contains(mousex, mousey))
-	{
+	if(this->startgameButton.clicked(mev))
 		ret = sceneID::gamescene;
-	}
 
-	if(this->highscoresButton.sprite.getGlobalBounds().contains(mousex, mousey))
-	{
+	else if(this->highscoresButton.clicked(mev))
 		ret = sceneID::highscores;
-	}
 
-	this->highscoresButton.release();
-	this->startgameButton.release();
 	return ret;
+}
+
+void MainMenu::handleMouseHovers(const sf::Event &mev)
+{
+	this->startgameButton.handleHoverEvent(mev);
+	this->highscoresButton.handleHoverEvent(mev);
 }
 
 sceneID MainMenu::switchScene()
@@ -110,3 +109,7 @@ sceneID MainMenu::switchScene()
 
 	return this->eventLoop();
 }
+
+#ifdef setColor
+#undef setColor
+#endif // setColor

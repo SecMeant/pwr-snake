@@ -15,6 +15,7 @@ private:
 public:
 	// Textures
 	static sf::Texture brickBackgroundTex;
+	static sf::Texture waterandsandBackgroundTex;
 	static sf::Texture highscoresBackgroundTex;
 	static sf::Texture tileTexture;
 	static sf::Texture cherryTexture;
@@ -33,6 +34,9 @@ public:
 
 	static constexpr const char *brickBackgroundTexPath 
 		= "./assets/default-background.png";
+
+	static constexpr const char *waterandsandBackgroundTexPath 
+		= "./assets/waterandsand-background.png";
 
 	static constexpr const char *highscoresBackgroundTexPath 
 		= "./assets/highscores.png";
