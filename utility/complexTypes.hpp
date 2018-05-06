@@ -67,6 +67,42 @@ public:
 	{this->sprite.setTexture(*this->releasedTexture, true);}
 };
 
+#ifdef _WIN32
+#define setColor(arg) setFillColor(arg)
+#endif // _WIN32
+
+class TextButton 
+{
+public:
+	sf::Color hoveredColor;
+	sf::Color defaultColor;
+	sf::Text text;
+
+	TextButton() = default;
+	explicit TextButton(const sf::Font font);
+	TextButton(const sf::Font &font, sf::Color defC, sf::Color hc);
+
+	bool clicked(const sf::Event &ev);
+
+	inline void setColors
+	(sf::Color defC, sf::Color hc)
+	{
+		this->defaultColor = defC;
+		this->hoveredColor = hc;
+		this->text.setColor(this->defaultColor);
+	}
+
+	inline void mouseEnter()
+	{this->text.setColor(this->hoveredColor);}
+
+	inline void mouseLeave()
+	{this->text.setColor(this->defaultColor);}
+};
+
+#ifdef setColor
+#undef setColor
+#endif // setColor
+
 namespace scoreBoardSettings
 {
 	constexpr int headerOffsetx = 0;

@@ -2,7 +2,7 @@ CC=g++
 CFLAGS=-Wextra -Wall -std=c++14
 sfmlso=-lsfml-graphics -lsfml-window -lsfml-system
 OBJS=main.o scene.o scenemanager.o mainmenu.o highscores.o gamescene.o board.o logic.o\
-		 snake.o texturemanager.o savemanager.o
+		 snake.o texturemanager.o savemanager.o complexTypes.o
 OBJDIR=obj
 
 ifdef ComSpec
@@ -56,6 +56,9 @@ $(OBJDIR)/texturemanager.o: TextureManager/TextureManager.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)
 
 $(OBJDIR)/savemanager.o: SaveManager/SaveManager.cc
+	$(CC) -c $^ -o $@ $(CFLAGS)
+
+$(OBJDIR)/complexTypes.o: utility/complexTypes.cc
 	$(CC) -c $^ -o $@ $(CFLAGS)
 
 clean:

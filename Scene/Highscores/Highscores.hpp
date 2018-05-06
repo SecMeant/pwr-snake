@@ -17,12 +17,13 @@ private:
 	// after this scene returns, passing it to switchScene
 	virtual sceneID eventLoop() override;
 
-	Button returnButton;
+	TextButton returnButton;
 	TableHeader header;
 
 	inline void drawScoreBoard();
 	inline void drawHeader();
-	inline void drawScoreBoardEntries(int numberOfEntries);
+	inline void drawScoreBoardEntries
+	(int numberOfEntries=defScoreboardEntries);
 
 	inline void initializeButtons();
 	inline void initializeHeader();

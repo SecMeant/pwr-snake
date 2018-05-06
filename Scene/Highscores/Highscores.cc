@@ -30,26 +30,16 @@ sceneID Highscores::eventLoop()
 		sf::Event event;
 		while (this->parentWindow->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if(event.type == sf::Event::Closed)
 				this->parentWindow->close();
 			
-			if (event.type == sf::Event::MouseButtonReleased)
-			{
-				auto mousex = event.mouseButton.x;
-				auto mousey = event.mouseButton.y;
-
-				if(this->returnButton.sprite.getGlobalBounds().contains(mousex, mousey))
-				{
-					return {sceneID::mainmenu};
-				}
-			}
-
-			// TODO event handlingstd::get<0>(entry).c_str()
+			if(this->returnButton.clicked(event))
+				return {sceneID::mainmenu};
 		}
 
 		this->parentWindow->clear();
 		this->parentWindow->draw(this->background.shape);
-		this->parentWindow->draw(this->returnButton.sprite);
+		this->parentWindow->draw(this->returnButton.text);
 		this->drawScoreBoard();
 		this->parentWindow->display();
 	}
@@ -59,11 +49,15 @@ sceneID Highscores::eventLoop()
 void Highscores::initializeButtons()
 {
 	/* SETTING TEXTURES */
-	this->returnButton.loadTextures
-	(&TextureManager::blueSliderLeftTex);
+	this->returnButton.setColors
+	({255,255,255},{0,0,0});
+
+	this->returnButton.text.setFont(TextureManager::mushyLove);
+	this->returnButton.text.setString("Return");
+	this->returnButton.text.setCharacterSize(18);
 
 	/* SETTING POSITIONS */
-	this->returnButton.sprite.setPosition(700,500);
+	this->returnButton.text.setPosition(400,500);
 }
 
 void Highscores::drawScoreBoard()
