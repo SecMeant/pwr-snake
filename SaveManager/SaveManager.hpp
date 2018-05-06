@@ -1,6 +1,8 @@
 #ifndef SAVEMANAGER_H
 #define SAVEMANAGER_H
 
+#include "../utility/stdshared.hpp"
+
 #include <string>
 #include <vector>
 #include <tuple>
@@ -20,7 +22,14 @@ private:
 public:
 	void loadScoresFromFile(const char *filename=defaultScoresFilePath);
 
+	// It saves scores from scoreboard to file.
+	// numberOfTopEntries determine how many of them should be saved.
+	// IT OVERWRITES FILE IF ALREADY EXISTS
+	void saveScoresToFile
+	(const char *filename=defaultScoresFilePath, int numberOfTopEntries=defScoreboardEntries);
+
 	// Logs scores to file
+	// Deprecated
 	void logScores(const char *filename=defaultScoresFilePath);
 
 	// Adding new score to the table

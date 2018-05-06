@@ -24,6 +24,27 @@ void SaveManager::loadScoresFromFile
 	else printf("Error. Unable to open file %s.",filename);
 }
 
+void SaveManager::saveScoresToFile
+(const char *filename, int amount)
+{
+	std::ofstream scoresFile;
+
+	scoresFile.open(filename);
+	if(scoresFile.is_open())
+	{
+		int i =0;
+		for(auto it:this->highscoresTable)
+		{
+			if(i >= amount)
+				break;
+
+			scoresFile << std::get<0>(it) << " " << std::get<1>(it) << "\n";
+			++i;
+		}
+	}
+	else puts("Error. Cannot open file for saving scores.");
+}
+
 void SaveManager::orderedInsert(const entryType &entry)
 {
 	int val = std::stoi(std::get<1>(entry));
@@ -51,7 +72,7 @@ void SaveManager::orderedInsert(const entryType &entry)
 void SaveManager::addScore(const entryType &entry)
 {
 	this->orderedInsert(entry);
-	this->logScores();
+	this->saveScoresToFile();
 }
 
 void SaveManager::logScores(const char *filename)

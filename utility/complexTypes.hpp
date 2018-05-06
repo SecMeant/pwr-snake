@@ -6,6 +6,8 @@
 #include "SFML/Graphics.hpp"
 #include "../TextureManager/TextureManager.hpp"
 
+constexpr int defScoreboardEntries = 12;
+
 struct renderObject
 {
 	sf::Texture texture;
