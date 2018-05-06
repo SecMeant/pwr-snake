@@ -51,10 +51,9 @@ sceneID Highscores::eventLoop()
 
 void Highscores::initializeButtons()
 {
-	/* SETTING TEXTURES */
+	/* SETTING LOOKS */
 	this->returnButton.setColors
 	({255,255,255},{0,0,0});
-
 	this->returnButton.text.setFont(TextureManager::mushyLove);
 	this->returnButton.text.setString("Return");
 	this->returnButton.text.setCharacterSize(18);
