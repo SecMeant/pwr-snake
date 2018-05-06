@@ -15,6 +15,7 @@ sf::Texture TextureManager::blueButtonUpTex;
 sf::Texture TextureManager::blueSliderLeftTex;
 sf::Texture TextureManager::snakeHeadTex;
 sf::Texture TextureManager::snakeBodyTex;
+sf::Texture TextureManager::pypyTex;
 
 sf::Font TextureManager::defaultFont;
 sf::Font TextureManager::mushyLove;
@@ -47,6 +48,7 @@ void TextureManager::loadTextures()
 	TextureManager::blueSliderLeftTex.loadFromFile(this->blueSliderLeftTexPath);
 	TextureManager::snakeHeadTex.loadFromFile(this->snakeHeadTexPath);
 	TextureManager::snakeBodyTex.loadFromFile(this->snakeBodyTexPath);
+	TextureManager::pypyTex.loadFromFile(this->pypyTexPath);
 	TextureManager::mushyLove.loadFromFile(this->mushyLovePath);
 }
 

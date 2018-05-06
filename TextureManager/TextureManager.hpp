@@ -28,6 +28,7 @@ public:
 	static sf::Texture blueSliderLeftTex;
 	static sf::Texture snakeHeadTex;
 	static sf::Texture snakeBodyTex;
+	static sf::Texture pypyTex;
 
 	static sf::Font defaultFont;
 	static sf::Font mushyLove;
@@ -73,6 +74,9 @@ public:
 
 	static constexpr const char *snakeBodyTexPath
 		= "./assets/snakeBody.png";
+	
+	static constexpr const char *pypyTexPath
+		= "./assets/pypy.png";
 
 	static constexpr const char *defaultFontPath
 		= "./assets/font/orange_juice.ttf";

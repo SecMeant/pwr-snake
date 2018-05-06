@@ -15,10 +15,12 @@ private:
 	TableHeader header;
 	TextButton highscoresButton;
 	TextButton startgameButton;
+	sf::Sprite pypy;
 
 	virtual sceneID eventLoop() override;
 	inline void initializeButtons();
-	void initializeHeader();
+	inline void initializeHeader();
+	inline void initilizeFreeSprites();
 
 	/* Helpers for handling mouse events 
 	 *

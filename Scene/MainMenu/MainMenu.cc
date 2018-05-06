@@ -10,6 +10,7 @@ MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
 	puts("Creating main menu");
 	this->background.assetPath = TextureManager::brickBackgroundTexPath;
 	this->initializeBackground();
+	this->initilizeFreeSprites();
 	this->initializeButtons();
 	this->initializeHeader();
 }
@@ -39,6 +40,7 @@ sceneID MainMenu::eventLoop()
 		this->parentWindow->clear();
 		this->parentWindow->draw(this->background.shape);
 		this->parentWindow->draw(this->header.text);
+		this->parentWindow->draw(this->pypy);
 		this->parentWindow->draw(this->highscoresButton.text);
 		this->parentWindow->draw(this->startgameButton.text);
 		this->parentWindow->display();
@@ -81,6 +83,12 @@ void MainMenu::initializeHeader()
 		 scoreBoardSettings::headerOffsety);
 	this->header.text.setColor(textColor);
 	this->header.text.setCharacterSize(64);
+}
+
+void MainMenu::initilizeFreeSprites()
+{
+	this->pypy.setTexture(TextureManager::pypyTex, true);
+	this->pypy.setPosition(250,150);
 }
 
 sceneID MainMenu::handleMouseReleased(const sf::Event &mev)
