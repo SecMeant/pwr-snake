@@ -4,6 +4,93 @@
 #include "stdint.h"
 #include <SFML/Graphics.hpp>
 
+struct SnakeBodyTex
+{
+	sf::Texture vertical;
+	sf::Texture horizontal;
+
+	constexpr static const char *verticalPath =
+		"./assets/snake/body/snakeBodyVertical.png";
+	
+	constexpr static const char *horizontalPath =
+		"./assets/snake/body/snakeBodyHorizontal.png";
+
+	inline void loadTextures()
+	{
+		this->vertical.loadFromFile(this->verticalPath);
+		this->horizontal.loadFromFile(this->horizontalPath);
+	}
+};
+
+struct SnakeHeadTex
+{
+	sf::Texture left;
+	sf::Texture right;
+	sf::Texture up;
+	sf::Texture down;
+
+	constexpr static const char *leftPath =
+		"./assets/snake/head/snakeHeadLeft.png";
+
+	constexpr static const char *rightPath =
+		"./assets/snake/head/snakeHeadRight.png";
+
+	constexpr static const char *upPath =
+		"./assets/snake/head/snakeHeadUp.png";
+
+	constexpr static const char *downPath =
+		"./assets/snake/head/snakeHeadDown.png";
+
+	inline void loadTextures()
+	{
+		this->left.loadFromFile(this->leftPath);
+		this->right.loadFromFile(this->rightPath);
+		this->up.loadFromFile(this->upPath);
+		this->down.loadFromFile(this->downPath);
+	}
+};
+
+struct SnakeTailTex
+{
+	sf::Texture snakeTail;
+
+	constexpr static const char *snakeTailPath =
+		"./assets/snake/tail/snakeTail.png";
+
+	inline void loadTextures()
+	{
+		this->snakeTail.loadFromFile(this->snakeTailPath);
+	}
+};
+
+struct SnakeTurnTex
+{
+	sf::Texture snakeTurnDR;
+	sf::Texture snakeTurnLD;
+	sf::Texture snakeTurnLU;
+	sf::Texture snakeTurnUR;
+
+	constexpr static const char *snakeTurnDRPath =
+		"./assets/snake/turn/snakeTurnDR.png";
+	
+	constexpr static const char *snakeTurnLDPath =
+		"./assets/snake/turn/snakeTurnLD.png";
+	
+	constexpr static const char *snakeTurnLUPath =
+		"./assets/snake/turn/snakeTurnLU.png";
+
+	constexpr static const char *snakeTurnURPath =
+		"./assets/snake/turn/snakeTurnUR.png";
+
+	inline void loadTextures()
+	{
+		this->snakeTurnDR.loadFromFile(this->snakeTurnDRPath);
+		this->snakeTurnLD.loadFromFile(this->snakeTurnLDPath);
+		this->snakeTurnLU.loadFromFile(this->snakeTurnLUPath);
+		this->snakeTurnUR.loadFromFile(this->snakeTurnURPath);
+	}
+};
+
 class TextureManager
 {
 private:
@@ -26,9 +113,11 @@ public:
 	static sf::Texture blueButtonDownTex;
 	static sf::Texture blueButtonUpTex;
 	static sf::Texture blueSliderLeftTex;
-	static sf::Texture snakeHeadTex;
-	static sf::Texture snakeBodyTex;
 	static sf::Texture pypyTex;
+	static SnakeBodyTex snakeBodyTex;
+	static SnakeHeadTex snakeHeadTex;
+	static SnakeTailTex snakeTailTex;
+	static SnakeTurnTex snakeTurnTex;
 
 	static sf::Font defaultFont;
 	static sf::Font mushyLove;
@@ -70,10 +159,16 @@ public:
 		= "./assets/blue_sliderLeft.png";
 
 	static constexpr const char *snakeHeadTexPath
-		= "./assets/snakeHead.png";
+		= "./assets/snake/snakeHead.png";
 
 	static constexpr const char *snakeBodyTexPath
-		= "./assets/snakeBody.png";
+		= "./assets/snake/snakeBody.png";
+
+	static constexpr const char *snakeTailTexPath
+		= "./assets/snake/snakeTail.png";
+
+	static constexpr const char *snakeTurnTexPath
+		= "./assets/snake/snakeTurn1.png";
 	
 	static constexpr const char *pypyTexPath
 		= "./assets/pypy.png";

@@ -191,9 +191,8 @@ void GameScene::drawBoard() const
 
 void GameScene::drawSnake() const
 {
-	sf::RectangleShape snakePart;
-	snakePart.setTexture(&TextureManager::snakeHeadTex, true);
-	snakePart.setSize(sf::Vector2f(30.0f,30.0f));
+	sf::Sprite snakePart;
+	snakePart.setTexture(TextureManager::snakeHeadTex.down, true);
 	
 	auto it = this->snake.getBodyBegin();
 	auto itend = this->snake.getBodyEnd();
@@ -205,8 +204,7 @@ void GameScene::drawSnake() const
 	this->parentWindow->draw(snakePart);
 	++it;
 
-	snakePart.setTexture(&TextureManager::snakeBodyTex, true);
-	snakePart.setSize(sf::Vector2f(30.0f,30.0f));
+	snakePart.setTexture(TextureManager::snakeBodyTex.vertical, true);
 	// drawing body
 	while(it != itend)
 	{

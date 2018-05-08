@@ -13,9 +13,11 @@ sf::Texture TextureManager::yellowButtonUpTex;
 sf::Texture TextureManager::blueButtonDownTex;
 sf::Texture TextureManager::blueButtonUpTex;
 sf::Texture TextureManager::blueSliderLeftTex;
-sf::Texture TextureManager::snakeHeadTex;
-sf::Texture TextureManager::snakeBodyTex;
 sf::Texture TextureManager::pypyTex;
+SnakeBodyTex TextureManager::snakeBodyTex;
+SnakeHeadTex TextureManager::snakeHeadTex;
+SnakeTailTex TextureManager::snakeTailTex;
+SnakeTurnTex TextureManager::snakeTurnTex;
 
 sf::Font TextureManager::defaultFont;
 sf::Font TextureManager::mushyLove;
@@ -46,9 +48,12 @@ void TextureManager::loadTextures()
 	TextureManager::blueButtonDownTex.loadFromFile(this->blueButtonDownTexPath);
 	TextureManager::blueButtonUpTex.loadFromFile(this->blueButtonUpTexPath);
 	TextureManager::blueSliderLeftTex.loadFromFile(this->blueSliderLeftTexPath);
-	TextureManager::snakeHeadTex.loadFromFile(this->snakeHeadTexPath);
-	TextureManager::snakeBodyTex.loadFromFile(this->snakeBodyTexPath);
 	TextureManager::pypyTex.loadFromFile(this->pypyTexPath);
+	TextureManager::snakeBodyTex.loadTextures();
+	TextureManager::snakeHeadTex.loadTextures();
+	TextureManager::snakeTailTex.loadTextures();
+	TextureManager::snakeTurnTex.loadTextures();
+
 	TextureManager::mushyLove.loadFromFile(this->mushyLovePath);
 }
 
