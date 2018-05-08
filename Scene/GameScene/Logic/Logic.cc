@@ -52,6 +52,8 @@ bool Logic::isMoveInBoundary(Direction d) const
 			if(snakesHead->first <= 0)
 				return false;
 			return true;
+		default:
+			return true;
 	}
 
 	return false;

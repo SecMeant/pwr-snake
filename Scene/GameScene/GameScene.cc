@@ -192,7 +192,25 @@ void GameScene::drawBoard() const
 void GameScene::drawSnake() const
 {
 	sf::Sprite snakePart;
-	snakePart.setTexture(TextureManager::snakeHeadTex.down, true);
+
+	switch(this->snake.lastMovementDirection)
+	{
+		case Direction::Up:
+			snakePart.setTexture(TextureManager::snakeHeadTex.up);
+			break;
+		case Direction::Down:
+			snakePart.setTexture(TextureManager::snakeHeadTex.down);
+			break;
+		case Direction::Left:
+			snakePart.setTexture(TextureManager::snakeHeadTex.left);
+			break;
+		case Direction::Right:
+			snakePart.setTexture(TextureManager::snakeHeadTex.right);
+			break;
+		default:
+			puts("What ?!!");
+			break;
+	}
 	
 	auto it = this->snake.getBodyBegin();
 	auto itend = this->snake.getBodyEnd();
@@ -204,13 +222,19 @@ void GameScene::drawSnake() const
 	this->parentWindow->draw(snakePart);
 	++it;
 
-	snakePart.setTexture(TextureManager::snakeBodyTex.vertical, true);
 	// drawing body
 	while(it != itend)
 	{
 		snakePart.setPosition
 			(Board::boardxOffset+it->first*Board::tileWidth+5,
 			 Board::boardyOffset+it->second*Board::tileHeight+5);
+
+	 	/* CALCULATING DIRECTION OF SPRITES */
+		if(this->snake.getNextBodyDirection(it) == Direction::Left || this->snake.getNextBodyDirection(it) == Direction::Right)
+			snakePart.setTexture(TextureManager::snakeBodyTex.horizontal);
+		else if(this->snake.getNextBodyDirection(it) == Direction::Up || this->snake.getNextBodyDirection(it) == Direction::Down)
+			snakePart.setTexture(TextureManager::snakeBodyTex.vertical);
+
 		this->parentWindow->draw(snakePart);
 		++it;
 	}

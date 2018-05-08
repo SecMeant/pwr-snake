@@ -28,7 +28,8 @@ enum class Direction
 	Up,
 	Down,
 	Left,
-	Right
+	Right,
+	None
 };
 
 enum class GameState

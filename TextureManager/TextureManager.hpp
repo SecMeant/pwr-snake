@@ -4,6 +4,11 @@
 #include "stdint.h"
 #include <SFML/Graphics.hpp>
 
+// Im not sure about correctness of below code.
+// Maybe i should perform transform operations
+// textures instead of adding each variant as
+// separate file. TODO: maybe change it in future
+
 struct SnakeBodyTex
 {
 	sf::Texture vertical;
