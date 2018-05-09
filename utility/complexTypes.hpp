@@ -35,7 +35,8 @@ enum class Direction
 enum class GameState
 {
 	Pending,
-	Over
+	Over,
+	Highscore
 };
 
 class Button
