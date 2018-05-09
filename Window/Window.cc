@@ -22,6 +22,6 @@ void Window::draw(sf::RenderWindow &wnd) const
 void Window::initializeText(sf::Text &text)
 {
 	text.setFont(TextureManager::mushyLove);
-	text.setFillColor({0x0,0x0,0x0});
+	text.setColor({0x0,0x0,0x0});
 	text.setCharacterSize(12);
 }

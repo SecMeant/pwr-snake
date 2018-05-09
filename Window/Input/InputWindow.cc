@@ -8,7 +8,7 @@ InputWindow::InputWindow()
 	this->initializeText(this->input);
 	this->input.setPosition({280,300});
 	this->input.setCharacterSize(18);
-	this->input.setFillColor({0x00,0x00,0x00});
+	this->input.setColor({0x00,0x00,0x00});
 
 	this->inputBackground.setFillColor({0x90,0xaf,0xc5});
 	this->inputBackground.setSize({300,50});
