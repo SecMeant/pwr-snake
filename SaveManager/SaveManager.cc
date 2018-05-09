@@ -8,7 +8,6 @@ void SaveManager::loadScoresFromFile
 	std::ifstream scoresfile;
 	std::string tableEntry;
 	std::string score;
-	entryType entry;
 
 	scoresfile.open(filename);
 	if(scoresfile.is_open())
@@ -17,7 +16,7 @@ void SaveManager::loadScoresFromFile
 		while(getline(scoresfile, tableEntry, ' '))
 		{
 			getline(scoresfile, score);
-			entry = {tableEntry, score};
+			entryType entry{tableEntry, score};
 			this->orderedInsert(entry);
 		}
 	}

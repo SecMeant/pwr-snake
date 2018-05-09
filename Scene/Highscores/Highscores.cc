@@ -120,7 +120,7 @@ void Highscores::initializeHeader()
 		 scoreBoardSettings::headerOffsety);
 	this->header.text.setColor(textColor);
 	this->header.text.setCharacterSize(64);
-	this->header.background.setColor(backgroundColor);
+	this->header.background.setFillColor(backgroundColor);
 	this->header.background.setSize
 		({scoreBoardSettings::headerWidth,
 		 scoreBoardSettings::headerHeight});
