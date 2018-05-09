@@ -5,6 +5,7 @@
 #include "Snake/Snake.hpp"
 #include "Board/Board.hpp"
 #include "Logic/Logic.hpp"
+#include "../../Window/Input/InputWindow.hpp"
 #include "../../SaveManager/SaveManager.hpp"
 
 #include "../../utility/stdshared.hpp"
@@ -37,6 +38,7 @@ private:
 	Board board;
 	Snake snake;
 	Logic logic;
+	InputWindow inputWindow;
 	std::pair<int32_t, int32_t> cherryCoords;
 
 	int32_t pointsCount;
