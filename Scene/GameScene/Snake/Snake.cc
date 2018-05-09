@@ -57,7 +57,8 @@ void Snake::spawn(int32_t x, int32_t y)
 
 void Snake::addBodyPart()
 {
-	this->body.push_back(*(this->body.cend()-1));
+	auto tmp = *(this->body.cend()-1);
+	this->body.push_back(std::move(tmp));
 }
 
 Direction Snake::getNextBodyDirection(Snake::bodyType::const_iterator part) const
@@ -69,19 +70,83 @@ Direction Snake::getNextBodyDirection(Snake::bodyType::const_iterator part) cons
 
 	diff = *part;
 	++part;
-	diff.first = diff.first - part->first;
-	diff.second = diff.second - part->second;
+	diff.first = part->first - diff.first;
+	diff.second = part->second - diff.second;
 
 	if(diff.first == 1)
-		return Direction::Left;
-	if(diff.first == -1)
 		return Direction::Right;
+	if(diff.first == -1)
+		return Direction::Left;
 	if(diff.second == 1)
 		return Direction::Down;
 	if(diff.second == -1)
 		return Direction::Up;
 
 	return Direction::None;
+}
+
+Direction Snake::getPrevBodyDirection(Snake::bodyType::const_iterator part) const
+{
+	Snake::coordType diff;
+
+	if(part == this->getBodyBegin())
+		return Direction::None;
+
+	diff = *part;
+	--part;
+	diff.first = part->first - diff.first;
+	diff.second = part->second - diff.second;
+
+	if(diff.first == 1)
+		return Direction::Right;
+	if(diff.first == -1)
+		return Direction::Left;
+	if(diff.second == 1)
+		return Direction::Down;
+	if(diff.second == -1)
+		return Direction::Up;
+
+	return Direction::None;
+}
+
+Turn Snake::checkTurn(Snake::bodyType::const_iterator part) const
+{
+	Direction n,p;
+
+	n = this->getNextBodyDirection(part);
+	p = this->getPrevBodyDirection(part);
+
+	if(p == Direction::Left && n == Direction::Right)
+		return Turn::HS;
+	if(p == Direction::Right && n == Direction::Left)
+		return Turn::HS;
+
+	if(p == Direction::Up && n == Direction::Down)
+		return Turn::VS;
+	if(p == Direction::Down && n == Direction::Up)
+		return Turn::VS;
+
+	if(p == Direction::Up && n == Direction::Right)
+		return Turn::UR;
+	if(p == Direction::Right && n == Direction::Up)
+		return Turn::UR;
+
+	if(p == Direction::Left && n == Direction::Down)
+		return Turn::LD;
+	if(p == Direction::Down && n == Direction::Left)
+		return Turn::LD;
+
+	if(p == Direction::Left && n == Direction::Up)
+		return Turn::LU;
+	if(p == Direction::Up && n == Direction::Left)
+		return Turn::LU;
+
+	if(p == Direction::Down && n == Direction::Right)
+		return Turn::DR;
+	if(p == Direction::Right && n == Direction::Down)
+		return Turn::DR;
+
+	return Turn::None;
 }
 
 void Snake::debug_info()

@@ -51,10 +51,10 @@ sceneID GameScene::eventLoop()
 			}
 		}
 
+		this->logic.checkEating();
 		if(this->logic.getGameState() == GameState::Pending)
 			this->logic.intervalMove();
 
-		this->logic.checkEating();
 		this->parentWindow->clear();
 		this->renderGameTick();
 		this->parentWindow->display();
@@ -192,6 +192,8 @@ void GameScene::drawBoard() const
 void GameScene::drawSnake() const
 {
 	sf::Sprite snakePart;
+	Direction ld = Direction::None;
+	Direction d = Direction::None;
 
 	switch(this->snake.lastMovementDirection)
 	{
@@ -230,14 +232,100 @@ void GameScene::drawSnake() const
 			 Board::boardyOffset+it->second*Board::tileHeight+5);
 
 	 	/* CALCULATING DIRECTION OF SPRITES */
-		if(this->snake.getNextBodyDirection(it) == Direction::Left || this->snake.getNextBodyDirection(it) == Direction::Right)
+		d = this->snake.getNextBodyDirection(it);
+		if(d == Direction::Left || d == Direction::Right)
 			snakePart.setTexture(TextureManager::snakeBodyTex.horizontal);
-		else if(this->snake.getNextBodyDirection(it) == Direction::Up || this->snake.getNextBodyDirection(it) == Direction::Down)
+		else if(d == Direction::Up || d == Direction::Down)
 			snakePart.setTexture(TextureManager::snakeBodyTex.vertical);
 
+		if(d != ld)
+		{
+
+		}
+
+		ld = d;
 		this->parentWindow->draw(snakePart);
 		++it;
 	}
+}
+
+void GameScene::drawSnakeNew() const
+{
+	Snake::bodyType::const_iterator it;
+	Snake::bodyType::const_iterator itend;
+	sf::Sprite snakePart;
+	Direction d = Direction::None;
+	Turn t;
+
+	// Drawing from tail
+	itend = this->snake.getBodyBegin();
+	// Drawing tail
+	it = this->snake.getBodyEnd();
+	d = this->snake.getPrevBodyDirection(it);
+	
+	snakePart.setPosition
+		(Board::boardxOffset+it->first*Board::tileWidth+5,
+		 Board::boardyOffset+it->second*Board::tileHeight+5);
+	
+	switch(d)
+	{
+		case Direction::Up:
+			snakePart.setTexture(TextureManager::snakeTailTex.up);
+			break;
+		case Direction::Down:
+			snakePart.setTexture(TextureManager::snakeTailTex.down);
+			break;
+		case Direction::Left:
+			snakePart.setTexture(TextureManager::snakeTailTex.left);
+			break;
+		case Direction::Right:
+			snakePart.setTexture(TextureManager::snakeTailTex.right);
+			break;
+		default:
+			break;
+	}
+	this->parentWindow->draw(snakePart);
+	// END OF TAIL PRINT
+
+	--it;
+
+	while(it != itend)
+	{
+		t = this->snake.checkTurn(it);
+		
+		switch(t)
+		{
+			case Turn::HS:
+				snakePart.setTexture(TextureManager::snakeBodyTex.horizontal);
+				break;
+			case Turn::VS:
+				snakePart.setTexture(TextureManager::snakeBodyTex.vertical);
+				break;
+			case Turn::DR:
+				snakePart.setTexture(TextureManager::snakeTurnTex.snakeTurnDR);
+				break;
+			case Turn::LD:
+				snakePart.setTexture(TextureManager::snakeTurnTex.snakeTurnLD);
+				break;
+			case Turn::LU:
+				snakePart.setTexture(TextureManager::snakeTurnTex.snakeTurnLU);
+				break;
+			case Turn::UR:
+				snakePart.setTexture(TextureManager::snakeTurnTex.snakeTurnUR);
+				break;
+			default:
+				puts("Deffff");
+				break;
+		}
+
+		snakePart.setPosition
+			(Board::boardxOffset+it->first*Board::tileWidth+5,
+			 Board::boardyOffset+it->second*Board::tileHeight+5);
+		this->parentWindow->draw(snakePart);
+		--it;
+	}
+
+
 }
 
 void GameScene::drawCherry() const
@@ -268,7 +356,7 @@ void GameScene::renderGameTick() const
 		this->parentWindow->draw(this->background.shape);
 		this->parentWindow->draw(this->returnMainMenu.text);
 		this->drawBoard();
-		this->drawSnake();
+		this->drawSnakeNew();
 		this->drawCherry();
 		this->updateScoreString();
 		this->drawScore();

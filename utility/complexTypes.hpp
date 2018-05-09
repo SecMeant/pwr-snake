@@ -32,6 +32,17 @@ enum class Direction
 	None
 };
 
+enum class Turn
+{
+	DR, // Down-Right
+	LD, // Left-Down
+	LU, // Left-UP
+	UR, // Up-Right
+	VS, // Vertical-Straigth
+	HS, // Horizontal-Straigth
+	None
+};
+
 enum class GameState
 {
 	Pending,

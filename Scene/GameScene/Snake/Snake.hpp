@@ -54,7 +54,12 @@ public:
 
 	// Returns direction to next body part of snake
 	// relative to body part passed as iterator
+	// Direction is from tail to head
 	Direction getNextBodyDirection(bodyType::const_iterator part) const;
+	Direction getPrevBodyDirection(bodyType::const_iterator part) const;
+
+	// UB for Head and tail checking -- TODO make it return none
+	Turn checkTurn(bodyType::const_iterator part) const;
 
 	// prints debug info
 	void debug_info();

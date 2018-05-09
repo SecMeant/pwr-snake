@@ -34,37 +34,52 @@ struct SnakeHeadTex
 	sf::Texture up;
 	sf::Texture down;
 
-	constexpr static const char *leftPath =
+	constexpr static const char *leftpath =
 		"./assets/snake/head/snakeHeadLeft.png";
 
-	constexpr static const char *rightPath =
+	constexpr static const char *rightpath =
 		"./assets/snake/head/snakeHeadRight.png";
 
-	constexpr static const char *upPath =
+	constexpr static const char *uppath =
 		"./assets/snake/head/snakeHeadUp.png";
 
-	constexpr static const char *downPath =
+	constexpr static const char *downpath =
 		"./assets/snake/head/snakeHeadDown.png";
 
 	inline void loadTextures()
 	{
-		this->left.loadFromFile(this->leftPath);
-		this->right.loadFromFile(this->rightPath);
-		this->up.loadFromFile(this->upPath);
-		this->down.loadFromFile(this->downPath);
+		this->left.loadFromFile(this->leftpath);
+		this->right.loadFromFile(this->rightpath);
+		this->up.loadFromFile(this->uppath);
+		this->down.loadFromFile(this->downpath);
 	}
 };
 
 struct SnakeTailTex
 {
-	sf::Texture snakeTail;
+	sf::Texture left;
+	sf::Texture right;
+	sf::Texture up;
+	sf::Texture down;
 
-	constexpr static const char *snakeTailPath =
-		"./assets/snake/tail/snakeTail.png";
+	constexpr static const char *leftpath =
+		"./assets/snake/tail/snakeTailLeft.png";
+
+	constexpr static const char *rightpath =
+		"./assets/snake/tail/snakeTailRight.png";
+
+	constexpr static const char *uppath =
+		"./assets/snake/tail/snakeTailUp.png";
+
+	constexpr static const char *downpath =
+		"./assets/snake/tail/snakeTailDown.png";
 
 	inline void loadTextures()
 	{
-		this->snakeTail.loadFromFile(this->snakeTailPath);
+		this->left.loadFromFile(this->leftpath);
+		this->right.loadFromFile(this->rightpath);
+		this->up.loadFromFile(this->uppath);
+		this->down.loadFromFile(this->downpath);
 	}
 };
 

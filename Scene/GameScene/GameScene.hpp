@@ -49,6 +49,7 @@ private:
 	virtual sceneID eventLoop() override;
 	inline void drawBoard() const;
 	inline void drawSnake() const;
+	inline void drawSnakeNew() const;
 	inline void drawCherry() const;
 	inline void drawScore() const;
 
