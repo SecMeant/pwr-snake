@@ -8,7 +8,7 @@ Window::Window()
 	this->header.setString
 		("Nice ! Thats a score worth remembering.");
 
-	this->background.setFillColor({0xff,0,0});
+	this->background.setFillColor({0x33,0x6b,0x87});
 	this->background.setPosition(250,200);
 	this->background.setSize({300,200});
 }
@@ -22,7 +22,6 @@ void Window::draw(sf::RenderWindow &wnd) const
 void Window::initializeText(sf::Text &text)
 {
 	text.setFont(TextureManager::mushyLove);
-	text.setFillColor({0xff,0xff,0});
-	text.setString("Sample text");
+	text.setFillColor({0x0,0x0,0x0});
 	text.setCharacterSize(12);
 }

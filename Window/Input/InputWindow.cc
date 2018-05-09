@@ -3,12 +3,14 @@
 InputWindow::InputWindow()
 {
 	this->initializeText(this->textInside);
-	this->textInside.setPosition({320,250});
+	this->textInside.setPosition({280,250});
 	this->textInside.setString("Enter your name and press enter ");
 	this->initializeText(this->input);
-	this->input.setPosition({300,300});
+	this->input.setPosition({280,300});
+	this->input.setCharacterSize(18);
+	this->input.setFillColor({0x00,0x00,0x00});
 
-	this->inputBackground.setFillColor({0x88,0x88,0x88});
+	this->inputBackground.setFillColor({0x90,0xaf,0xc5});
 	this->inputBackground.setSize({300,50});
 	this->inputBackground.setPosition({250,280});
 }
