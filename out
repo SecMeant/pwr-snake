@@ -1,0 +1,478 @@
+Creating scene manager
+Creating scene
+Creating main menu
+Creating scene
+Creating highscores
+Creating scene
+Creating game scene
+Switching to MainMenu
+Switching to GameScene
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 -1
+Next 0 -1 at: 0 0
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 0
+Next 0 -1 at: 0 1
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 1
+Next 0 -1 at: 0 2
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Next 0 -1 at: 0 2
+Next 0 -1 at: 0 3
+HEAD
+Switching to MainMenu

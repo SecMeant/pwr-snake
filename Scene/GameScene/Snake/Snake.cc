@@ -65,8 +65,6 @@ Direction Snake::getNextBodyDirection(Snake::bodyType::const_iterator part) cons
 {
 	Snake::coordType diff;
 
-	if(part == this->getBodyBegin())
-		return Direction::None;
 
 	diff = *part;
 	++part;

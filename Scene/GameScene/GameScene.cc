@@ -325,7 +325,31 @@ void GameScene::drawSnakeNew() const
 		--it;
 	}
 
-
+	// Head drawing
+	it = this->snake.getBodyBegin();
+	puts("HEAD");
+	switch(this->snake.getNextBodyDirection(it))
+	{
+		case Direction::Up:
+			snakePart.setTexture(TextureManager::snakeHeadTex.down);
+			break;
+		case Direction::Down:
+			snakePart.setTexture(TextureManager::snakeHeadTex.up);
+			break;
+		case Direction::Left:
+			snakePart.setTexture(TextureManager::snakeHeadTex.right);
+			break;
+		case Direction::Right:
+			snakePart.setTexture(TextureManager::snakeHeadTex.left);
+			break;
+		default:
+			snakePart.setTexture(TextureManager::snakeHeadTex.down);
+			break;
+	}
+	snakePart.setPosition
+		(Board::boardxOffset+it->first*Board::tileWidth+5,
+		 Board::boardyOffset+it->second*Board::tileHeight+5);
+	this->parentWindow->draw(snakePart);
 }
 
 void GameScene::drawCherry() const
