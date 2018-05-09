@@ -34,8 +34,9 @@ sceneID GameScene::eventLoop()
 			
 			if(event.type == sf::Event::MouseButtonReleased)
 			{
-				if(this->handleMouseReleased(event) != sceneID::none)
-					return this->handleMouseReleased(event);
+				auto ret = this->handleMouseReleased(event);
+				if(ret != sceneID::none)
+					return ret;
 				continue;
 			}
 
@@ -52,7 +53,10 @@ sceneID GameScene::eventLoop()
 
 			if(event.type == sf::Event::KeyPressed)
 			{
-				this->handleKeyPressed(event);
+				auto ret = this->handleKeyPressed(event);
+
+				if(ret != sceneID::none)
+					return ret;
 				continue;
 			}
 		}
@@ -127,8 +131,9 @@ sceneID GameScene::handleMouseReleased(const sf::Event &mev)
 	return ret;
 }
 
-void GameScene::handleKeyPressed(const sf::Event &kev)
+sceneID GameScene::handleKeyPressed(const sf::Event &kev)
 {
+	sceneID ret = sceneID::none;
 	switch(kev.key.code)
 	{
 		case sf::Keyboard::Up:
@@ -162,10 +167,25 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 				str.erase(str.getSize()-1);
 				this->inputWindow.input.setString(str);
 			}
+			break;
+
+		case sf::Keyboard::Return:
+			if(this->inputWindow.active)
+			{
+				
+				auto playerName = this->inputWindow.input.getString().toAnsiString();
+				SaveManager::entryType entry
+				{playerName,std::to_string(this->pointsCount)};
+
+				saveManager.addScore(entry);
+				ret = sceneID::highscores;
+			}
+			break;
 
 		default:
 			break;
 	}
+	return ret;
 }
 
 void GameScene::handleTextEntered(const sf::Event &kev)

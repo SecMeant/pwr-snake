@@ -13,6 +13,10 @@ class GameScene;
 
 class Logic
 {
+public:
+	// For highscores
+	std::string playerName;
+
 private:
 	GameScene * const parent;
 	const float moveInterval;
