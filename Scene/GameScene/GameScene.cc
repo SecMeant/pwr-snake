@@ -42,6 +42,12 @@ sceneID GameScene::eventLoop()
 			if(event.type == sf::Event::MouseMoved)
 			{
 				this->handleMouseHovers(event);
+				continue;
+			}
+
+			if(event.type == sf::Event::TextEntered)
+			{
+				this->handleTextEntered(event);
 			}
 
 			if(event.type == sf::Event::KeyPressed)
@@ -57,7 +63,6 @@ sceneID GameScene::eventLoop()
 		this->logic.checkEating();
 		this->parentWindow->clear();
 		this->renderGameTick();
-		this->inputWindow.draw(*this->parentWindow);
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
@@ -94,7 +99,6 @@ void GameScene::initializeLabels()
 
 void GameScene::initializeInputWindow()
 {
-	this->inputWindow;
 }
 
 void GameScene::updateScoreString() const
@@ -151,9 +155,33 @@ void GameScene::handleKeyPressed(const sf::Event &kev)
 			this->snake.movementDirection = Direction::Right;
 			break;
 
+		case sf::Keyboard::BackSpace:
+			if(this->inputWindow.active && this->inputWindow.input.getString().getSize() > 0)
+			{
+				auto str = this->inputWindow.input.getString();
+				str.erase(str.getSize()-1);
+				this->inputWindow.input.setString(str);
+			}
+
 		default:
-			this->snake.addBodyPart();
 			break;
+	}
+}
+
+void GameScene::handleTextEntered(const sf::Event &kev)
+{
+	if(this->inputWindow.active)
+	{
+		if(kev.text.unicode < 0x41 || kev.text.unicode > 0x7a)
+			return;
+
+		auto str = this->inputWindow.input.getString();
+		
+		if(str.getSize() > 20)
+			return;
+
+		str += static_cast<char>(kev.text.unicode);
+		this->inputWindow.input.setString(str);
 	}
 }
 
@@ -261,6 +289,7 @@ void GameScene::drawScore() const
 sceneID GameScene::switchScene()
 {
 	puts("Switching to GameScene");
+	this->inputWindow.active = false;
 	this->returnMainMenu.reset();
 	return this->eventLoop();
 }
@@ -274,6 +303,12 @@ void GameScene::renderGameTick() const
 		this->drawCherry();
 		this->updateScoreString();
 		this->drawScore();
+
+		if(this->logic.getGameState() == GameState::Over)
+		{
+			this->inputWindow.active = true;
+			this->inputWindow.draw(*this->parentWindow);
+		}
 }
 
 #ifdef setColor

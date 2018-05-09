@@ -4,7 +4,7 @@ InputWindow::InputWindow()
 {
 	this->initializeText(this->textInside);
 	this->textInside.setPosition({320,250});
-	this->textInside.setString("Enter your name: ");
+	this->textInside.setString("Enter your name and press enter ");
 	this->initializeText(this->input);
 	this->input.setPosition({300,300});
 
@@ -20,7 +20,7 @@ void InputWindow::setRelativeToFrame()
 	this->inputBackground.setPosition({250,250});
 }
 
-void InputWindow::draw(sf::RenderWindow &wnd)
+void InputWindow::draw(sf::RenderWindow &wnd) const
 {
 	this->Window::draw(wnd);
 	wnd.draw(this->inputBackground);

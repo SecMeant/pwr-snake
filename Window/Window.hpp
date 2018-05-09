@@ -11,7 +11,12 @@ public:
 	sf::RectangleShape background;
 	sf::Text header;
 
-	void draw(sf::RenderWindow &wnd);
+	// True if window is active and events
+	// should affect it.
+	// False otherwise.
+	mutable bool active;
+
+	void draw(sf::RenderWindow &wnd) const;
 	void initializeText(sf::Text &text);
 
 	explicit Window();

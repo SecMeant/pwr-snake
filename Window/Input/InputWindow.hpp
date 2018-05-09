@@ -12,7 +12,7 @@ public:
 	sf::Text input;
 	sf::RectangleShape inputBackground;
 
-	void draw(sf::RenderWindow &wnd);
+	void draw(sf::RenderWindow &wnd) const;
 	void setRelativeToFrame();
 
 	explicit InputWindow();
