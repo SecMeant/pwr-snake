@@ -15,12 +15,14 @@ class Snake
 {
 public:
 	typedef std::pair<int32_t, int32_t> coordType;
-	typedef std::vector<coordType> bodyType; 
+	typedef std::list<Direction> bodyType; 
 
 private:
-	// Holds X:Y as FIRST:SECOND of body parts of snake
-	// CAUTION: LAST BODY PART IS INVISIBLE
-	//          IT IS USED TO PROPERLY SPAWN NEW BODY PARTS
+	// Holds XY of snakes head
+	std::pair<int32_t, int32_t> head;
+
+	// Each body part holds direction
+	// of previous body part
 	bodyType body;
 
 public:
@@ -43,21 +45,30 @@ public:
 
 	void addBodyPart();	
 
-	inline std::vector<std::pair<int32_t, int32_t> >::const_iterator getBodyBegin() const
-	{return this->body.cbegin();}
-
-	inline std::vector<std::pair<int32_t, int32_t> >::const_iterator getBodyEnd() const
-	{return --this->body.cend();}
-
 	inline int32_t getBodySize() const  
 	{return this->body.size();}
-
-	// Returns direction to next body part of snake
-	// relative to body part passed as iterator
-	Direction getNextBodyDirection(bodyType::const_iterator part) const;
-
-	// prints debug info
-	void debug_info();
 };
 
 #endif // SNAKE_H
+
+
+
+// d d d r r r u u
+/*
+ * x
+ * x     o
+ * x     x
+ * x x x x
+ *
+ * */
+
+
+// d d r r r u u u
+/*
+ *       o
+ * x     x
+ * x     x
+ * x x x x
+ *
+ * */
+

@@ -51,44 +51,10 @@ void Snake::spawn(int32_t x, int32_t y)
 {
 	this->movementDirection = Direction::Down;
 	this->lastMovementDirection = Direction::Down;
-	this->body={{x,y},{x,y-1},{x,y-2},
-		          {x,y-3}/*invisible part*/};
+	this->head={x,y};
 }
 
 void Snake::addBodyPart()
 {
 	this->body.push_back(*(this->body.cend()-1));
-}
-
-Direction Snake::getNextBodyDirection(Snake::bodyType::const_iterator part) const
-{
-	Snake::coordType diff;
-
-	if(part == this->getBodyBegin())
-		return Direction::None;
-
-	diff = *part;
-	++part;
-	diff.first = diff.first - part->first;
-	diff.second = diff.second - part->second;
-
-	if(diff.first == 1)
-		return Direction::Left;
-	if(diff.first == -1)
-		return Direction::Right;
-	if(diff.second == 1)
-		return Direction::Down;
-	if(diff.second == -1)
-		return Direction::Up;
-
-	return Direction::None;
-}
-
-void Snake::debug_info()
-{
-	for(auto i:this->body)
-	{
-		printf("{%i,%i};",i.first,i.second);
-	}
-	putchar('\n');
 }
