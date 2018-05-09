@@ -64,6 +64,7 @@ private:
 	inline void initializeSnake();
 	inline void initializeButtons();
 	inline void initializeLabels();
+	inline void initializeInputWindow();
 
 	/* Helpers for handling mouse events 
 	 *

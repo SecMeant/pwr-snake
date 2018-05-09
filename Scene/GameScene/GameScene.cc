@@ -57,6 +57,7 @@ sceneID GameScene::eventLoop()
 		this->logic.checkEating();
 		this->parentWindow->clear();
 		this->renderGameTick();
+		this->inputWindow.draw(*this->parentWindow);
 		this->parentWindow->display();
 	}
 	return {sceneID::none};
@@ -89,6 +90,11 @@ void GameScene::initializeLabels()
 	this->scoreString.setCharacterSize(42);
 	this->scoreString.setColor(textColor);
 	this->scoreString.setPosition(100,530);
+}
+
+void GameScene::initializeInputWindow()
+{
+	this->inputWindow;
 }
 
 void GameScene::updateScoreString() const
