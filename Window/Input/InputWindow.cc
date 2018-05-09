@@ -2,10 +2,15 @@
 
 InputWindow::InputWindow()
 {
-	this->textInside.setString("Your name");
-	this->inputBackground.setFillColor({0xff,0,0});
+	this->initializeText(this->textInside);
+	this->textInside.setPosition({320,250});
+	this->textInside.setString("Enter your name: ");
+	this->initializeText(this->input);
+	this->input.setPosition({300,300});
+
+	this->inputBackground.setFillColor({0x88,0x88,0x88});
 	this->inputBackground.setSize({300,50});
-	this->inputBackground.setPosition({250,200});
+	this->inputBackground.setPosition({250,280});
 }
 
 void InputWindow::setRelativeToFrame()

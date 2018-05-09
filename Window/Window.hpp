@@ -12,8 +12,9 @@ public:
 	sf::Text header;
 
 	void draw(sf::RenderWindow &wnd);
+	void initializeText(sf::Text &text);
 
-	explicit Window() = default;
+	explicit Window();
 };
 
 #endif // WINDOW_H
