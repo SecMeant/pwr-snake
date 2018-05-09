@@ -229,11 +229,7 @@ void GameScene::drawSnake() const
 			(Board::boardxOffset+it->first*Board::tileWidth+5,
 			 Board::boardyOffset+it->second*Board::tileHeight+5);
 
-	 	/* CALCULATING DIRECTION OF SPRITES */
-		if(this->snake.getNextBodyDirection(it) == Direction::Left || this->snake.getNextBodyDirection(it) == Direction::Right)
-			snakePart.setTexture(TextureManager::snakeBodyTex.horizontal);
-		else if(this->snake.getNextBodyDirection(it) == Direction::Up || this->snake.getNextBodyDirection(it) == Direction::Down)
-			snakePart.setTexture(TextureManager::snakeBodyTex.vertical);
+		snakePart.setTexture(TextureManager::snakeBodyTex);
 
 		this->parentWindow->draw(snakePart);
 		++it;

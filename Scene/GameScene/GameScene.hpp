@@ -28,7 +28,7 @@ namespace boardSettings
 
 namespace snakeSettings
 {
-	constexpr float moveInterval = 0.70f;
+	constexpr float moveInterval = 0.15f;
 };
 
 class GameScene:public Scene

@@ -9,24 +9,6 @@
 // textures instead of adding each variant as
 // separate file. TODO: maybe change it in future
 
-struct SnakeBodyTex
-{
-	sf::Texture vertical;
-	sf::Texture horizontal;
-
-	constexpr static const char *verticalPath =
-		"./assets/snake/body/snakeBodyVertical.png";
-	
-	constexpr static const char *horizontalPath =
-		"./assets/snake/body/snakeBodyHorizontal.png";
-
-	inline void loadTextures()
-	{
-		this->vertical.loadFromFile(this->verticalPath);
-		this->horizontal.loadFromFile(this->horizontalPath);
-	}
-};
-
 struct SnakeHeadTex
 {
 	sf::Texture left;
@@ -55,47 +37,6 @@ struct SnakeHeadTex
 	}
 };
 
-struct SnakeTailTex
-{
-	sf::Texture snakeTail;
-
-	constexpr static const char *snakeTailPath =
-		"./assets/snake/tail/snakeTail.png";
-
-	inline void loadTextures()
-	{
-		this->snakeTail.loadFromFile(this->snakeTailPath);
-	}
-};
-
-struct SnakeTurnTex
-{
-	sf::Texture snakeTurnDR;
-	sf::Texture snakeTurnLD;
-	sf::Texture snakeTurnLU;
-	sf::Texture snakeTurnUR;
-
-	constexpr static const char *snakeTurnDRPath =
-		"./assets/snake/turn/snakeTurnDR.png";
-	
-	constexpr static const char *snakeTurnLDPath =
-		"./assets/snake/turn/snakeTurnLD.png";
-	
-	constexpr static const char *snakeTurnLUPath =
-		"./assets/snake/turn/snakeTurnLU.png";
-
-	constexpr static const char *snakeTurnURPath =
-		"./assets/snake/turn/snakeTurnUR.png";
-
-	inline void loadTextures()
-	{
-		this->snakeTurnDR.loadFromFile(this->snakeTurnDRPath);
-		this->snakeTurnLD.loadFromFile(this->snakeTurnLDPath);
-		this->snakeTurnLU.loadFromFile(this->snakeTurnLUPath);
-		this->snakeTurnUR.loadFromFile(this->snakeTurnURPath);
-	}
-};
-
 class TextureManager
 {
 private:
@@ -119,10 +60,8 @@ public:
 	static sf::Texture blueButtonUpTex;
 	static sf::Texture blueSliderLeftTex;
 	static sf::Texture pypyTex;
-	static SnakeBodyTex snakeBodyTex;
+	static sf::Texture snakeBodyTex;
 	static SnakeHeadTex snakeHeadTex;
-	static SnakeTailTex snakeTailTex;
-	static SnakeTurnTex snakeTurnTex;
 
 	static sf::Font defaultFont;
 	static sf::Font mushyLove;
@@ -164,17 +103,11 @@ public:
 		= "./assets/blue_sliderLeft.png";
 
 	static constexpr const char *snakeHeadTexPath
-		= "./assets/snake/snakeHead.png";
+		= "./assets/snake/head/snakeHead.png";
 
 	static constexpr const char *snakeBodyTexPath
-		= "./assets/snake/snakeBody.png";
+		= "./assets/snake/body/snakeBody.png";
 
-	static constexpr const char *snakeTailTexPath
-		= "./assets/snake/snakeTail.png";
-
-	static constexpr const char *snakeTurnTexPath
-		= "./assets/snake/snakeTurn1.png";
-	
 	static constexpr const char *pypyTexPath
 		= "./assets/pypy.png";
 
