@@ -1,9 +1,5 @@
 #include "MainMenu.hpp"
 
-#ifdef _WIN32
-#define setColor(arg) setFillColor(arg)
-#endif // _WIN32
-
 MainMenu::MainMenu(const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd)
 {
@@ -81,7 +77,7 @@ void MainMenu::initializeHeader()
 	this->header.setPosition
 		(scoreBoardSettings::headerOffsetx,
 		 scoreBoardSettings::headerOffsety);
-	this->header.text.setColor(textColor);
+	this->header.text.setFillColor(textColor);
 	this->header.text.setCharacterSize(64);
 }
 
@@ -119,7 +115,3 @@ sceneID MainMenu::switchScene()
 
 	return this->eventLoop();
 }
-
-#ifdef setColor
-#undef setColor
-#endif // setColor

@@ -1,9 +1,5 @@
 #include "GameScene.hpp"
 
-#ifdef _WIN32
-#define setColor(arg) setFillColor(arg)
-#endif // _WIN32
-
 GameScene::GameScene
 (const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd), board() /*initialized later*/, snake(),
@@ -97,7 +93,7 @@ void GameScene::initializeLabels()
 	this->updateScoreString();
 	this->scoreString.setFont(TextureManager::defaultFont);
 	this->scoreString.setCharacterSize(42);
-	this->scoreString.setColor(textColor);
+	this->scoreString.setFillColor(textColor);
 	this->scoreString.setPosition(100,530);
 }
 
@@ -331,6 +327,3 @@ void GameScene::renderGameTick() const
 		}
 }
 
-#ifdef setColor
-#undef setColor
-#endif // setColor

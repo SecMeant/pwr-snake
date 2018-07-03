@@ -1,9 +1,5 @@
 #include "Highscores.hpp"
 
-#ifdef _WIN32
-#define setColor(arg) setFillColor(arg)
-#endif // _WIN32
-
 Highscores::Highscores
 (const std::shared_ptr<sf::RenderWindow> &wnd)
 :Scene(wnd)
@@ -87,7 +83,7 @@ void Highscores::drawScoreBoardEntries
 
 	tmp.setFont(TextureManager::mushyLove);
 	tmp.setCharacterSize(24);
-	tmp.setColor(color);
+	tmp.setFillColor(color);
 	tmp.setPosition(scoreBoardSettings::nameOffset,currOffset);
 
 	for(auto entry:highscoresTable)
@@ -118,7 +114,7 @@ void Highscores::initializeHeader()
 	this->header.setPosition
 		(scoreBoardSettings::headerOffsetx,
 		 scoreBoardSettings::headerOffsety);
-	this->header.text.setColor(textColor);
+	this->header.text.setFillColor(textColor);
 	this->header.text.setCharacterSize(64);
 	this->header.background.setFillColor(backgroundColor);
 	this->header.background.setSize
@@ -126,6 +122,3 @@ void Highscores::initializeHeader()
 		 scoreBoardSettings::headerHeight});
 }
 
-#ifdef setColor
-#undef setColor
-#endif // setColor
